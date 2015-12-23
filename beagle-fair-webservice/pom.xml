@@ -11,7 +11,8 @@
     <packaging>war</packaging>
     <artifactId>beagle-fair-webservice</artifactId>
     <properties>
-            <spring.version>4.2.4.RELEASE</spring.version>
+        <spring.version>4.2.4.RELEASE</spring.version>
+        <beagle.fair.dao.version>1.0.0-SNAPSHOT</beagle.fair.dao.version>
     </properties>
 
     <dependencies>
@@ -37,11 +38,23 @@
             <artifactId>jackson-databind</artifactId>
             <version>2.4.1</version>
         </dependency>
+        <!-- business -->
         <dependency>
             <groupId>ch.smartlinksa.intern</groupId>
             <artifactId>beagle-fair-business</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>ch.smartlinksa.intern</groupId>
+            <artifactId>beagle-fair-dao</artifactId>
+            <version>${beagle.fair.dao.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+        </dependency>
+
     </dependencies>
+
 
 </project>
