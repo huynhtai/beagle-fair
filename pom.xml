@@ -12,11 +12,13 @@
     <modules>
         <module>beagle-fair-webservice</module>
         <module>beagle-fair-business</module>
+        <module>beagle-fair-interface</module>
     </modules>
 
     <properties>
         <spring.version>4.2.4.RELEASE</spring.version>
         <spring.data.version>1.9.2.RELEASE</spring.data.version>
+        <beagle-fair-dao.version>1.0.0-SNAPSHOT</beagle-fair-dao.version>
     </properties>
 
     <dependencyManagement>
@@ -43,6 +45,28 @@
                 <artifactId>spring-data-jpa</artifactId>
                 <version>${spring.data.version}</version>
             </dependency>
+
+            <!-- Add dao module-->
+            <dependency>
+                <groupId>ch.smartlinksa.intern</groupId>
+                <artifactId>beagle-fair-dao</artifactId>
+                <version>${beagle-fair-dao.version}</version>
+            </dependency>
+
+            <!-- Add interface module-->
+            <dependency>
+                <groupId>ch.smartlinksa.intern</groupId>
+                <artifactId>beagle-fair-interface</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- Add business module-->
+            <dependency>
+                <groupId>ch.smartlinksa.intern</groupId>
+                <artifactId>beagle-fair-business</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
