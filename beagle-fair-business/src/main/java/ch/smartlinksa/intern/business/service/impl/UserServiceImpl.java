@@ -48,7 +48,6 @@ public class UserServiceImpl implements IUserService{
         userEntity.setGender(userRequest.getGender());
         userEntity.setPhoneNumber(userRequest.getPhoneNumber());
         userEntity.setAddress(userRequest.getAddress());
-        userEntity.setBalance(userRequest.getBalance());
         return userEntity;
     }
 }

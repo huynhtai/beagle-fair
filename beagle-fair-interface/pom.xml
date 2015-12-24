@@ -16,6 +16,10 @@
             <groupId>ch.smartlinksa.intern</groupId>
             <artifactId>beagle-fair-dao</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

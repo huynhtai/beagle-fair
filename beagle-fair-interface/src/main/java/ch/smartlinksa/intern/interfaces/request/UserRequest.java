@@ -14,6 +14,7 @@ public class UserRequest {
 
     private String lastName;
 
+
     private String birthday;
 
     private Gender gender;
@@ -21,8 +22,6 @@ public class UserRequest {
     private String phoneNumber;
 
     private String address;
-
-    private double balance;
 
     public String getUserName() {
         return userName;
@@ -88,11 +87,4 @@ public class UserRequest {
         this.address = address;
     }
 
-    public double getBalance() {
-        return balance;
-    }
-
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
 }
