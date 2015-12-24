@@ -19,6 +19,7 @@
         <spring.version>4.2.4.RELEASE</spring.version>
         <spring.data.version>1.9.2.RELEASE</spring.data.version>
         <beagle-fair-dao.version>1.0.0-SNAPSHOT</beagle-fair-dao.version>
+        <hibernate-validator.version>4.2.0.Final</hibernate-validator.version>
     </properties>
 
     <dependencyManagement>
@@ -32,6 +33,13 @@
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-webmvc</artifactId>
                 <version>${spring.version}</version>
+            </dependency>
+
+            <!-- Hibernate validator-->
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>${hibernate-validator.version}</version>
             </dependency>
 
             <!-- Json-->
