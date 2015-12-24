@@ -6,6 +6,9 @@ import ch.smartlinksa.intern.dao.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Service
@@ -31,7 +34,17 @@ public class UserServiceImpl implements IUserService{
         userEntity.setPassword(userRequest.getPassword());
         userEntity.setFirstName(userRequest.getFirstName());
         userEntity.setLastName(userRequest.getLastName());
-//        userEntity.setBirthday(new Date(userRequest.getBirthday()));
+
+        // Birthday
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            Date bithday = df.parse(userRequest.getBirthday());
+            userEntity.setBirthday(bithday);
+            System.out.println(bithday);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         userEntity.setGender(userRequest.getGender());
         userEntity.setPhoneNumber(userRequest.getPhoneNumber());
         userEntity.setAddress(userRequest.getAddress());
