@@ -1,8 +1,10 @@
 package ch.smartlinksa.intern.interfaces.validate.constraint;
 
 
-import com.springapp.mvc.constant.MessageCodeConstant;
-import com.springapp.mvc.validate.validator.GenderValidator;
+
+
+import ch.smartlinksa.intern.interfaces.constant.MessageCodeConstant;
+import ch.smartlinksa.intern.interfaces.validate.validator.GenderValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -14,7 +16,7 @@ import java.lang.annotation.Target;
 @Constraint(validatedBy = GenderValidator.class)
 @Target({ ElementType.METHOD, ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Gender {
+public @interface GenderValidate {
 
     String message() default MessageCodeConstant.ERROR_GENDER;
 

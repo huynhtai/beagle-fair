@@ -1,6 +1,7 @@
 package ch.smartlinksa.intern.interfaces.request;
 
 import ch.smartlinksa.intern.dao.constant.Gender;
+import ch.smartlinksa.intern.interfaces.validate.constraint.GenderValidate;
 
 import java.util.Date;
 
@@ -17,6 +18,7 @@ public class UserRequest {
 
     private String birthday;
 
+    @GenderValidate
     private Gender gender;
 
     private String phoneNumber;
