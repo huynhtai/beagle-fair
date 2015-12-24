@@ -4,7 +4,7 @@ import ch.smartlinksa.intern.dao.constant.Gender;
 
 import java.util.Date;
 
-public class User {
+public class UserRequest {
     private String userName;
 
     private String password;
@@ -14,7 +14,7 @@ public class User {
 
     private String lastName;
 
-    private Date birthday;
+    private String birthday;
 
     private Gender gender;
 
@@ -56,11 +56,11 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 

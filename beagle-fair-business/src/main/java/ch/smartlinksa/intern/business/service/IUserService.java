@@ -1,7 +1,7 @@
 package ch.smartlinksa.intern.business.service;
 
-import ch.smartlinksa.intern.interfaces.request.User;
+import ch.smartlinksa.intern.interfaces.request.UserRequest;
 
 public interface IUserService {
-    public boolean add(User user);
+    public String add(UserRequest userRequest);
 }
