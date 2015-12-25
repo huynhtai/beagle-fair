@@ -1,5 +1,6 @@
 package ch.smartlinksa.intern.interfaces.request;
 
+
 import ch.smartlinksa.intern.interfaces.constant.MessageCodeConstant;
 import ch.smartlinksa.intern.interfaces.constant.PatternConstant;
 import ch.smartlinksa.intern.interfaces.validate.constraint.ExistUser;
@@ -19,13 +20,14 @@ public class UserRequest {
     @Pattern(message = MessageCodeConstant.ERROR_PATTERN_USER, regexp = PatternConstant.USER_NAME)
     private String userName;
 
+    @NotBlank(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
+    @Size(message = MessageCodeConstant.ERROR_SIZE, min = 6, max = 100)
+    @Pattern(message = MessageCodeConstant.ERROR_PATTERN,regexp = PatternConstant.PASSWORD)
     private String password;
 
     private String firstName;
 
-
     private String lastName;
-
 
     private String birthday;
 
