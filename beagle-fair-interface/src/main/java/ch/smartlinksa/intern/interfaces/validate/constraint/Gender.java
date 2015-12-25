@@ -16,7 +16,7 @@ import java.lang.annotation.Target;
 @Constraint(validatedBy = GenderValidator.class)
 @Target({ ElementType.METHOD, ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
-public @interface GenderValidate {
+public @interface Gender {
 
     String message() default MessageCodeConstant.ERROR_GENDER;
 

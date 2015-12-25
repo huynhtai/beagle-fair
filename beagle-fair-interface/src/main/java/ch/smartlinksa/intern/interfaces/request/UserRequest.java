@@ -1,16 +1,23 @@
 package ch.smartlinksa.intern.interfaces.request;
 
-import ch.smartlinksa.intern.dao.constant.Gender;
+
 import ch.smartlinksa.intern.interfaces.constant.MessageCodeConstant;
 import ch.smartlinksa.intern.interfaces.constant.PatternConstant;
-import ch.smartlinksa.intern.interfaces.validate.constraint.GenderValidate;
+import ch.smartlinksa.intern.interfaces.validate.constraint.ExistUser;
+import ch.smartlinksa.intern.interfaces.validate.constraint.Gender;
 import org.hibernate.validator.constraints.NotBlank;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.util.Date;
 
 public class UserRequest {
+
+    @ExistUser
+    @Size(message = MessageCodeConstant.ERROR_SIZE, min = 6, max = 30)
+    @NotNull(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
+    @NotBlank(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
+    @Pattern(message = MessageCodeConstant.ERROR_PATTERN_USER, regexp = PatternConstant.USER_NAME)
     private String userName;
 
     @NotBlank(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
@@ -30,11 +37,12 @@ public class UserRequest {
 
     private String birthday;
 
-    private Gender gender;
+    @Gender
+    private String gender;
 
     @NotBlank(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
     @Size(message = MessageCodeConstant.ERROR_SIZE, min = 4, max = 25)
-    @Pattern(message = MessageCodeConstant.ERROR_PATTERN_PHONE_NUMBER, regexp = PatternConstant.PHONENUMBER)
+    @Pattern(message = MessageCodeConstant.ERROR_PATTERN_PHONE_NUMBER, regexp = PatternConstant.PHONE_NUMBER)
     private String phoneNumber;
 
     @NotBlank(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
@@ -81,11 +89,11 @@ public class UserRequest {
         this.birthday = birthday;
     }
 
-    public Gender getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(Gender gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
