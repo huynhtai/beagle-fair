@@ -2,19 +2,15 @@ package ch.smartlinksa.intern.business.service.impl;
 
 import ch.smartlinksa.intern.dao.constant.Gender;
 import ch.smartlinksa.intern.dao.entity.User;
+import ch.smartlinksa.intern.interfaces.constant.FormatConstant;
 import ch.smartlinksa.intern.interfaces.request.UserRequest;
 import ch.smartlinksa.intern.business.service.IUserService;
 import ch.smartlinksa.intern.dao.repository.UserRepository;
 import ch.smartlinksa.intern.interfaces.response.RestApiResponse;
-import ch.smartlinksa.intern.interfaces.response.RestApiResponseHeaders;
 import ch.smartlinksa.intern.interfaces.response.UserResponse;
+import ch.smartlinksa.intern.interfaces.util.DateFormatUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.IllegalFormatException;
 
 @Service
@@ -59,33 +55,22 @@ public class UserServiceImpl implements IUserService{
 
     private User convertToUserEntity(UserRequest userRequest){
 
-
         User userEntity = new User();
+
         userEntity.setUserName(userRequest.getUserName());
         userEntity.setPassword(userRequest.getPassword());
         userEntity.setFirstName(userRequest.getFirstName());
         userEntity.setLastName(userRequest.getLastName());
-        userEntity.setBirthday(convertStringToDate(userRequest.getBirthday(), "dd/MM/yyyy"));
+        userEntity.setBirthday(DateFormatUtil.convertStringToDate(userRequest.getBirthday(), FormatConstant.BIRTHDAY_FORMAT));
         userEntity.setGender(Gender.valueOf(convertGender(userRequest.getGender())));
         userEntity.setPhoneNumber(userRequest.getPhoneNumber());
         userEntity.setAddress(userRequest.getAddress());
+
         return userEntity;
     }
 
-    private Date convertStringToDate(String dateString, String format) {
-        DateFormat df = new SimpleDateFormat(format);
-        Date date = null;
-        try {
-            date = df.parse(dateString);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return date;
-    }
-
     private  String convertGender(String gender){
-        return "1".equalsIgnoreCase(gender)?"MALE":"FEMALE";
-
+        return "0".equalsIgnoreCase(gender)?"MALE":"FEMALE";
     }
 }
 

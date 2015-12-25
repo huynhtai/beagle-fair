@@ -2,18 +2,17 @@ package ch.smartlinksa.intern.interfaces.validate.validator;
 
 import ch.smartlinksa.intern.dao.entity.User;
 import ch.smartlinksa.intern.dao.repository.UserRepository;
-import ch.smartlinksa.intern.interfaces.validate.constraint.ExistUser;
+import ch.smartlinksa.intern.interfaces.validate.constraint.ExistedUser;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.List;
 
-public class ExistUserValidator implements ConstraintValidator<ExistUser, String>{
+public class ExistedUserValidator implements ConstraintValidator<ExistedUser, String>{
 
     @Autowired
     private UserRepository userRepository;
-    public void initialize(ExistUser existUser) {
+    public void initialize(ExistedUser existedUser) {
 
     }
 

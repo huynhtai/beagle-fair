@@ -1,22 +1,22 @@
 package ch.smartlinksa.intern.interfaces.request;
 
-
 import ch.smartlinksa.intern.interfaces.constant.MessageCodeConstant;
 import ch.smartlinksa.intern.interfaces.constant.PatternConstant;
-import ch.smartlinksa.intern.interfaces.validate.constraint.ExistUser;
+import ch.smartlinksa.intern.interfaces.validate.constraint.BirthDayValidate;
+import ch.smartlinksa.intern.interfaces.validate.constraint.ExistedUser;
 import ch.smartlinksa.intern.interfaces.validate.constraint.Gender;
 import org.hibernate.validator.constraints.NotBlank;
-
+import org.hibernate.validator.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class UserRequest {
 
-    @ExistUser
+    @ExistedUser
     @Size(message = MessageCodeConstant.ERROR_SIZE, min = 6, max = 30)
     @NotBlank(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
-    @Pattern(message = MessageCodeConstant.ERROR_PATTERN_USER, regexp = PatternConstant.USER_NAME)
+    @Pattern(message = MessageCodeConstant.ERROR_PATTERN_USERNAME, regexp = PatternConstant.USER_NAME)
     private String userName;
 
     @NotBlank(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
@@ -34,6 +34,9 @@ public class UserRequest {
     @Pattern(message = MessageCodeConstant.ERROR_PATTERN_NAME, regexp = PatternConstant.NAME)
     private String lastName;
 
+    @NotNull(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
+    @NotEmpty(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
+    @BirthDayValidate
     private String birthday;
 
     @Gender

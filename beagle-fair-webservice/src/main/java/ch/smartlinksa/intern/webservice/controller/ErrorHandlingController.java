@@ -1,11 +1,14 @@
 package ch.smartlinksa.intern.webservice.controller;
 
 
+import ch.smartlinksa.intern.interfaces.constant.MessageCodeConstant;
 import ch.smartlinksa.intern.interfaces.response.RestApiResponse;
 import ch.smartlinksa.intern.interfaces.response.RestApiResponseHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.http.HttpRequest;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
@@ -47,12 +50,19 @@ public class ErrorHandlingController {
 
     }*/
 
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    @ResponseBody
+    public RestApiResponse<?> handleHttpMessageNotReadableException(HttpServletRequest request, HttpServletResponse response,
+                                                                    Object handler, HttpMessageNotReadableException exception){
+
+        return createBeagleFairResponseError(request, MessageCodeConstant.ERROR_HTTP_MESSAGE_NOT_READLEBLE, null);
+    }
+
     @ExceptionHandler(Exception.class)
     @ResponseBody
     public RestApiResponse<?> handleIllegalFormatException(HttpServletRequest request, HttpServletResponse response,
                                                            Object handler, Exception ex) {
-        String resultCode = "500";
-        return createBeagleFairResponseError(request, resultCode, null);
+        return createBeagleFairResponseError(request, MessageCodeConstant.ERROR_INTERNAL_SERVER, null);
     }
 
 
@@ -65,6 +75,7 @@ public class ErrorHandlingController {
         responseHeaders.setResultDescription(getMessage(resultCode, messageArguments));
         return RestApiResponse;
     }
+
 
 
     private boolean isObjectValidateError(BindingResult result) {
