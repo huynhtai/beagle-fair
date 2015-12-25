@@ -10,8 +10,8 @@ import java.util.List;
 
 public class GenderValidator implements ConstraintValidator<GenderValidate, String> {
     private static final List<String> GENDER_SUPPORTED = Arrays.asList("0","1");
-    public void initialize(GenderValidate gender) {
 
+    public void initialize(GenderValidate gender) {
     }
 
     public boolean isValid(String inputGender, ConstraintValidatorContext constraintValidatorContext) {

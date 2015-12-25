@@ -1,24 +1,29 @@
 package ch.smartlinksa.intern.interfaces.request;
 
 import ch.smartlinksa.intern.dao.constant.Gender;
+import ch.smartlinksa.intern.interfaces.constant.MessageCodeConstant;
+import ch.smartlinksa.intern.interfaces.constant.PatternConstant;
 import ch.smartlinksa.intern.interfaces.validate.constraint.GenderValidate;
+import org.hibernate.validator.constraints.NotBlank;
 
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 public class UserRequest {
     private String userName;
 
+    @NotBlank(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
+    @Size(message = MessageCodeConstant.ERROR_SIZE, min = 6, max = 100)
+    @Pattern(message = MessageCodeConstant.ERROR_PATTERN,regexp = PatternConstant.PASSWORD)
     private String password;
 
     private String firstName;
 
-
     private String lastName;
-
 
     private String birthday;
 
-    @GenderValidate
     private Gender gender;
 
     private String phoneNumber;
