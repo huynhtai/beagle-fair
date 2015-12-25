@@ -15,13 +15,12 @@ public class UserRequest {
 
     @ExistUser
     @Size(message = MessageCodeConstant.ERROR_SIZE, min = 6, max = 30)
-    @NotNull(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
     @NotBlank(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
     @Pattern(message = MessageCodeConstant.ERROR_PATTERN_USER, regexp = PatternConstant.USER_NAME)
     private String userName;
 
     @NotBlank(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
-    @Size(message = MessageCodeConstant.ERROR_SIZE, min = 6, max = 100)
+    @Size(message = MessageCodeConstant.ERROR_SIZE, min = 6, max = 1000)
     @Pattern(message = MessageCodeConstant.ERROR_PATTERN_PASSWORD,regexp = PatternConstant.PASSWORD)
     private String password;
 

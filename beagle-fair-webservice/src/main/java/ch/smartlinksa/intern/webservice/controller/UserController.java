@@ -14,12 +14,12 @@ import javax.validation.Valid;
 
 @RestController
 public class UserController {
+
     @Autowired
     IUserService userService;
 
     @RequestMapping(value = "/adduser", method = RequestMethod.POST)
     public RestApiResponse add(@RequestBody @Valid UserRequest userRequest){
-        System.out.println("UserRequest in Controller: " + userRequest.getFirstName());
         return userService.add(userRequest);
     }
 

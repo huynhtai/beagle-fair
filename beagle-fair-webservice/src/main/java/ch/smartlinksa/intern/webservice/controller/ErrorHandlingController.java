@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.IllegalFormatException;
 
 @ControllerAdvice
 public class ErrorHandlingController {
@@ -32,10 +31,10 @@ public class ErrorHandlingController {
 
         if (isObjectValidateError(result)) {
             ObjectError error = result.getGlobalError();
-            return createPaymentResponseError(request, error.getDefaultMessage(), null);
+            return createBeagleFairResponseError(request, error.getDefaultMessage(), null);
         } else {
             FieldError fieldError = result.getFieldErrors().get(0);
-            return createPaymentResponseError(request, fieldError.getDefaultMessage(), fieldError.getArguments());
+            return createBeagleFairResponseError(request, fieldError.getDefaultMessage(), fieldError.getArguments());
         }
 
     }
@@ -44,7 +43,7 @@ public class ErrorHandlingController {
     @ResponseBody
     public RestApiResponse<?> handleIllegalFormatException(HttpServletRequest request, HttpServletResponse response,
                                                                      Object handler, IllegalFormatException ex) {
-       return createPaymentResponseError(request, "500", ["Internal Error"]);
+       return createBeagleFairResponseError(request, "500", ["Internal Error"]);
 
     }*/
 
@@ -53,11 +52,11 @@ public class ErrorHandlingController {
     public RestApiResponse<?> handleIllegalFormatException(HttpServletRequest request, HttpServletResponse response,
                                                            Object handler, Exception ex) {
         String resultCode = "500";
-        return createPaymentResponseError(request,resultCode, null);
+        return createBeagleFairResponseError(request, resultCode, null);
     }
 
 
-    private RestApiResponse<?> createPaymentResponseError(HttpServletRequest request, String resultCode, Object[] messageArguments) {
+    private RestApiResponse<?> createBeagleFairResponseError(HttpServletRequest request, String resultCode, Object[] messageArguments) {
         RestApiResponse<String> RestApiResponse = new RestApiResponse<String>();
         RestApiResponseHeaders responseHeaders = RestApiResponse.getHeaders();
         responseHeaders.setClientTransactionId("");

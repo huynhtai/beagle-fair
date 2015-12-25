@@ -30,16 +30,21 @@ public class UserServiceImpl implements IUserService{
             return makeAddUserResponse(userEntity);
         }catch (IllegalFormatException e) {
             throw e;
+
         }
     }
     private  RestApiResponse<?> makeAddUserResponse(User userEntity){
+
         RestApiResponse<UserResponse> addUserResponse = new RestApiResponse<UserResponse>();
         addUserResponse.setBody(convertUserEntityToUserResponse(userEntity));
+
         return addUserResponse;
     }
 
     private  UserResponse convertUserEntityToUserResponse(User userEntity){
-            UserResponse userResponse = new UserResponse();
+
+        UserResponse userResponse = new UserResponse();
+
         userResponse.setId(userEntity.getId());
         userResponse.setUserName(userEntity.getUserName());
         userResponse.setPhoneNumber(userEntity.getPhoneNumber());
@@ -47,30 +52,40 @@ public class UserServiceImpl implements IUserService{
         userResponse.setBirthday(userEntity.getBirthday().toString());
         userResponse.setFirstName(userEntity.getFirstName());
         userResponse.setLastName(userEntity.getLastName());
+        userResponse.setGender(userEntity.getGender().toString());
+
         return userResponse;
     }
 
-    private ch.smartlinksa.intern.dao.entity.User convertToUserEntity(UserRequest userRequest){
-        ch.smartlinksa.intern.dao.entity.User userEntity = new ch.smartlinksa.intern.dao.entity.User();
+    private User convertToUserEntity(UserRequest userRequest){
+
+
+        User userEntity = new User();
         userEntity.setUserName(userRequest.getUserName());
         userEntity.setPassword(userRequest.getPassword());
         userEntity.setFirstName(userRequest.getFirstName());
         userEntity.setLastName(userRequest.getLastName());
-
-        // Birthday
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        try {
-            Date bithday = df.parse(userRequest.getBirthday());
-            userEntity.setBirthday(bithday);
-            System.out.println(bithday);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-//        userEntity.setGender(Gender.valueOf(userRequest.getGender()));
+        userEntity.setBirthday(convertStringToDate(userRequest.getBirthday(), "dd/MM/yyyy"));
+        userEntity.setGender(Gender.valueOf(convertGender(userRequest.getGender())));
         userEntity.setPhoneNumber(userRequest.getPhoneNumber());
         userEntity.setAddress(userRequest.getAddress());
         return userEntity;
+    }
+
+    private Date convertStringToDate(String dateString, String format) {
+        DateFormat df = new SimpleDateFormat(format);
+        Date date = null;
+        try {
+            date = df.parse(dateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
+    }
+
+    private  String convertGender(String gender){
+        return "1".equalsIgnoreCase(gender)?"MALE":"FEMALE";
+
     }
 }
 

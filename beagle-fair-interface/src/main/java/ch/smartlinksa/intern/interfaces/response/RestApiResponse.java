@@ -3,6 +3,7 @@ package ch.smartlinksa.intern.interfaces.response;
 import java.io.Serializable;
 
 public class RestApiResponse<T> implements Serializable {
+
     private static final long serialVersionUID = 655915097213118500L;
     private RestApiResponseHeaders headers = new RestApiResponseHeaders();
     private T body;
