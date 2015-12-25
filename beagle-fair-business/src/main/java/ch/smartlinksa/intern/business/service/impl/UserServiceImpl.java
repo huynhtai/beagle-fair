@@ -1,5 +1,6 @@
 package ch.smartlinksa.intern.business.service.impl;
 
+import ch.smartlinksa.intern.dao.constant.Gender;
 import ch.smartlinksa.intern.interfaces.request.UserRequest;
 import ch.smartlinksa.intern.business.service.IUserService;
 import ch.smartlinksa.intern.dao.repository.UserRepository;
@@ -36,16 +37,16 @@ public class UserServiceImpl implements IUserService{
         userEntity.setLastName(userRequest.getLastName());
 
         // Birthday
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        try {
-            Date bithday = df.parse(userRequest.getBirthday());
-            userEntity.setBirthday(bithday);
-            System.out.println(bithday);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+//        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+//        try {
+//            Date bithday = df.parse(userRequest.getBirthday());
+//            userEntity.setBirthday(bithday);
+//            System.out.println(bithday);
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
 
-        userEntity.setGender(userRequest.getGender());
+//        userEntity.setGender(Gender.valueOf(userRequest.getGender()));
         userEntity.setPhoneNumber(userRequest.getPhoneNumber());
         userEntity.setAddress(userRequest.getAddress());
         return userEntity;

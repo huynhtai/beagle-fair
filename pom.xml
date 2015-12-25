@@ -55,6 +55,31 @@
                 <version>${spring.data.version}</version>
             </dependency>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <!-- Add dao module-->
             <dependency>
                 <groupId>ch.smartlinksa.intern</groupId>

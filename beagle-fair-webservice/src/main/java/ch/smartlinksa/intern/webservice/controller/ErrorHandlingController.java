@@ -50,6 +50,7 @@ public class ErrorHandlingController {
     }
 
 
+
     private boolean isObjectValidateError(BindingResult result) {
         return result.getGlobalErrorCount() > 0;
     }

@@ -1,23 +1,32 @@
 package ch.smartlinksa.intern.interfaces.request;
 
-import ch.smartlinksa.intern.dao.constant.Gender;
-import ch.smartlinksa.intern.interfaces.constant.MessageCodeConstant;
-import ch.smartlinksa.intern.interfaces.validate.constraint.BirthDayValidate;
-import ch.smartlinksa.intern.interfaces.validate.constraint.GenderValidate;
-import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.Future;
+import ch.smartlinksa.intern.interfaces.constant.MessageCodeConstant;
+import ch.smartlinksa.intern.interfaces.constant.PatternConstant;
+import ch.smartlinksa.intern.interfaces.validate.constraint.BirthDayValidate;
+import ch.smartlinksa.intern.interfaces.validate.constraint.ExistUser;
+import ch.smartlinksa.intern.interfaces.validate.constraint.FutureDate;
+import ch.smartlinksa.intern.interfaces.validate.constraint.Gender;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
-import java.io.Serializable;
-import java.util.Date;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
-public class UserRequest implements Serializable{
+public class UserRequest {
 
+    @ExistUser
+    @Size(message = MessageCodeConstant.ERROR_SIZE, min = 6, max = 30)
     @NotNull(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
+    @NotBlank(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
+    @Pattern(message = MessageCodeConstant.ERROR_PATTERN_USERNAME, regexp = PatternConstant.USER_NAME)
     private String userName;
 
+    @NotBlank(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
+    @Size(message = MessageCodeConstant.ERROR_SIZE, min = 6, max = 100)
+    @Pattern(message = MessageCodeConstant.ERROR_PATTERN_PASSWORD,regexp = PatternConstant.PASSWORD)
     private String password;
 
     private String firstName;
@@ -26,13 +35,13 @@ public class UserRequest implements Serializable{
 
     @NotNull(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
     @NotEmpty(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
-    @Past(message = MessageCodeConstant.ERROR_IVALID_BIRTHDAY)
-//    @Future(message = MessageCodeConstant.ERROR_IVALID)
-//    @BirthDayValidate
+    @FutureDate
+    @BirthDayValidate
     private String birthday;
 
-//    @GenderValidate
-    private Gender gender;
+
+//    @Gender
+    private String gender;
 
     private String phoneNumber;
 
@@ -78,11 +87,11 @@ public class UserRequest implements Serializable{
         this.birthday = birthday;
     }
 
-    public Gender getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(Gender gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
