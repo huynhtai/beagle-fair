@@ -29,8 +29,14 @@ public class UserRequest {
     @Pattern(message = MessageCodeConstant.ERROR_PATTERN_PASSWORD,regexp = PatternConstant.PASSWORD)
     private String password;
 
+    @NotBlank(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
+    @Size(message = MessageCodeConstant.ERROR_SIZE, min = 1, max = 100)
+    @Pattern(message = MessageCodeConstant.ERROR_PATTERN_NAME, regexp = PatternConstant.NAME)
     private String firstName;
 
+    @NotBlank(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
+    @Size(message = MessageCodeConstant.ERROR_SIZE, min = 1, max = 100)
+    @Pattern(message = MessageCodeConstant.ERROR_PATTERN_NAME, regexp = PatternConstant.NAME)
     private String lastName;
 
     @NotNull(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
@@ -43,8 +49,13 @@ public class UserRequest {
 //    @Gender
     private String gender;
 
+    @NotBlank(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
+    @Size(message = MessageCodeConstant.ERROR_SIZE, min = 4, max = 25)
+    @Pattern(message = MessageCodeConstant.ERROR_PATTERN_PHONE_NUMBER, regexp = PatternConstant.PHONE_NUMBER)
     private String phoneNumber;
 
+    @NotBlank(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
+    @Size(message = MessageCodeConstant.ERROR_SIZE, min = 1, max = 100)
     private String address;
 
     public String getUserName() {
