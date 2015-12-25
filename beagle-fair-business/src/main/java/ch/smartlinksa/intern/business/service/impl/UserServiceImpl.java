@@ -1,9 +1,13 @@
 package ch.smartlinksa.intern.business.service.impl;
 
 import ch.smartlinksa.intern.dao.constant.Gender;
+import ch.smartlinksa.intern.dao.entity.User;
 import ch.smartlinksa.intern.interfaces.request.UserRequest;
 import ch.smartlinksa.intern.business.service.IUserService;
 import ch.smartlinksa.intern.dao.repository.UserRepository;
+import ch.smartlinksa.intern.interfaces.response.RestApiResponse;
+import ch.smartlinksa.intern.interfaces.response.RestApiResponseHeaders;
+import ch.smartlinksa.intern.interfaces.response.UserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,22 +15,39 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.IllegalFormatException;
 
 @Service
 public class UserServiceImpl implements IUserService{
+
     @Autowired
     private UserRepository userRepository;
-    public String add(UserRequest userRequest) {
+    public RestApiResponse<?> add(UserRequest userRequest) throws IllegalFormatException{
         try {
-            ch.smartlinksa.intern.dao.entity.User userEntity = convertToUserEntity(userRequest);
+            User userEntity = convertToUserEntity(userRequest);
             System.out.println("userEntity: " + userEntity.getId() + " " + userEntity.getFirstName());
             userRepository.save(userEntity);
-            return  "Add user successfully";
-        }catch (Exception e){
-            System.out.println("Error message: ");
-            e.printStackTrace();
-            return "Have some errors";
+            return makeAddUserResponse(userEntity);
+        }catch (IllegalFormatException e) {
+            throw e;
         }
+    }
+    private  RestApiResponse<?> makeAddUserResponse(User userEntity){
+        RestApiResponse<UserResponse> addUserResponse = new RestApiResponse<UserResponse>();
+        addUserResponse.setBody(convertUserEntityToUserResponse(userEntity));
+        return addUserResponse;
+    }
+
+    private  UserResponse convertUserEntityToUserResponse(User userEntity){
+            UserResponse userResponse = new UserResponse();
+        userResponse.setId(userEntity.getId());
+        userResponse.setUserName(userEntity.getUserName());
+        userResponse.setPhoneNumber(userEntity.getPhoneNumber());
+        userResponse.setAddress(userEntity.getAddress());
+        userResponse.setBirthday(userEntity.getBirthday().toString());
+        userResponse.setFirstName(userEntity.getFirstName());
+        userResponse.setLastName(userEntity.getLastName());
+        return userResponse;
     }
 
     private ch.smartlinksa.intern.dao.entity.User convertToUserEntity(UserRequest userRequest){
@@ -46,7 +67,7 @@ public class UserServiceImpl implements IUserService{
             e.printStackTrace();
         }
 
-        userEntity.setGender(Gender.valueOf(userRequest.getGender()));
+//        userEntity.setGender(Gender.valueOf(userRequest.getGender()));
         userEntity.setPhoneNumber(userRequest.getPhoneNumber());
         userEntity.setAddress(userRequest.getAddress());
         return userEntity;

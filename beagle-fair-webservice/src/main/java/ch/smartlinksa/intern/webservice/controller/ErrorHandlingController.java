@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.IllegalFormatException;
 
 @ControllerAdvice
 public class ErrorHandlingController {
@@ -38,6 +39,23 @@ public class ErrorHandlingController {
         }
 
     }
+
+/*    @ExceptionHandler(IllegalFormatException.class)
+    @ResponseBody
+    public RestApiResponse<?> handleIllegalFormatException(HttpServletRequest request, HttpServletResponse response,
+                                                                     Object handler, IllegalFormatException ex) {
+       return createPaymentResponseError(request, "500", ["Internal Error"]);
+
+    }*/
+
+    @ExceptionHandler(Exception.class)
+    @ResponseBody
+    public RestApiResponse<?> handleIllegalFormatException(HttpServletRequest request, HttpServletResponse response,
+                                                           Object handler, Exception ex) {
+        String resultCode = "500";
+        return createPaymentResponseError(request,resultCode, null);
+    }
+
 
     private RestApiResponse<?> createPaymentResponseError(HttpServletRequest request, String resultCode, Object[] messageArguments) {
         RestApiResponse<String> RestApiResponse = new RestApiResponse<String>();
