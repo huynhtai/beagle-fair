@@ -6,7 +6,7 @@ public class MessageCodeConstant {
 
     public static final String ERROR_SIZE = "1000";
     public static final String ERROR_GENDER = "1001";
-    public static final String ERROR_FIELD_REQUIRED = "1002";
-    public static final String ERROR_TRANSACTION_REFERENCE_ID = "1003";
+    public static final String ERROR_FIELD_REQUIRED = "1500";
+    public static final String ERROR_IVALID_BIRTHDAY = "1501";
 
 }
