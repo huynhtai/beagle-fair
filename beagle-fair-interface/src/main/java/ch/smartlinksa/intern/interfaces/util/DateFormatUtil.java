@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class DateFormatUtil {
 
-    static SimpleDateFormat simpleDateFormat = new SimpleDateFormat(FormatConstant.BIRTHDAY_FORMAT);
+    private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat(FormatConstant.BIRTHDAY_FORMAT);
 
     public static boolean isFormatDate(String dateInputString) {
 
@@ -45,7 +45,6 @@ public class DateFormatUtil {
     }
 
     public static Date convertStringToDate(String dateString, String format) {
-
         DateFormat df = new SimpleDateFormat(format);
         Date date = null;
         try {

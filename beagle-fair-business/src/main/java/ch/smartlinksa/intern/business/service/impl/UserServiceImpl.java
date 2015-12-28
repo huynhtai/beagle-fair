@@ -18,27 +18,20 @@ public class UserServiceImpl implements IUserService{
 
     @Autowired
     private UserRepository userRepository;
-    public RestApiResponse<?> add(UserRequest userRequest) throws IllegalFormatException{
-        try {
-            User userEntity = convertToUserEntity(userRequest);
-            System.out.println("userEntity: " + userEntity.getId() + " " + userEntity.getFirstName());
-            userRepository.save(userEntity);
-            return makeAddUserResponse(userEntity);
-        }catch (IllegalFormatException e) {
-            throw e;
-
-        }
+    public RestApiResponse<?> add(UserRequest userRequest) {
+        User userEntity = convertToUserEntity(userRequest);
+        System.out.println("userEntity: " + userEntity.getId() + " " + userEntity.getFirstName());
+        userRepository.save(userEntity);
+        return sendResponseWhenAddUserSuccessfully(userEntity);
     }
-    private  RestApiResponse<?> makeAddUserResponse(User userEntity){
 
+    private  RestApiResponse<?> sendResponseWhenAddUserSuccessfully(User userEntity){
         RestApiResponse<UserResponse> addUserResponse = new RestApiResponse<UserResponse>();
         addUserResponse.setBody(convertUserEntityToUserResponse(userEntity));
-
         return addUserResponse;
     }
 
     private  UserResponse convertUserEntityToUserResponse(User userEntity){
-
         UserResponse userResponse = new UserResponse();
 
         userResponse.setId(userEntity.getId());
@@ -54,7 +47,6 @@ public class UserServiceImpl implements IUserService{
     }
 
     private User convertToUserEntity(UserRequest userRequest){
-
         User userEntity = new User();
 
         userEntity.setUserName(userRequest.getUserName());

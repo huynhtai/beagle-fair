@@ -10,6 +10,7 @@ public class MessageCodeConstant {
     public static final String ERROR_FIELD_REQUIRED = "1002";
     public static final String ERROR_EXIST_USERNAME = "1004";
     public static final String ERROR_PATTERN_USERNAME = "1005";
+    public static final String ERROR_USER_NOT_FOUND = "1006";
     public static final String ERROR_PATTERN_PASSWORD = "1200";
     public static final String ERROR_PATTERN_PHONE_NUMBER = "1201";
     public static final String ERROR_PATTERN_NAME ="1202";

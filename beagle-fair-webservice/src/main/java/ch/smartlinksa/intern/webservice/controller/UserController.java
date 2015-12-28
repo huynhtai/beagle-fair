@@ -1,6 +1,5 @@
 package ch.smartlinksa.intern.webservice.controller;
 
-import ch.smartlinksa.intern.dao.entity.User;
 import ch.smartlinksa.intern.interfaces.request.UserRequest;
 import ch.smartlinksa.intern.business.service.IUserService;
 import ch.smartlinksa.intern.interfaces.response.RestApiResponse;

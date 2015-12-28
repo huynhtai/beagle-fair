@@ -11,6 +11,9 @@
     <packaging>war</packaging>
     <artifactId>beagle-fair-webservice</artifactId>
 
+    <properties>
+        <spring-security.version>4.0.3.RELEASE</spring-security.version>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -21,7 +24,6 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
         </dependency>
-
         <!-- Add business module-->
         <dependency>
             <groupId>ch.smartlinksa.intern</groupId>
@@ -31,6 +33,18 @@
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
+        </dependency>
+        <!--Spring security-->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring-security.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring-security.version}</version>
         </dependency>
 
     </dependencies>
