@@ -8,7 +8,6 @@
 
     <http auto-config="true">
         <intercept-url pattern="/adduser" access="permitAll()"/>
-        <intercept-url pattern="/test" access="isAuthenticated()"/>
         <intercept-url pattern="/**" access="isAuthenticated()"/>
         <logout
                 invalidate-session="true"
@@ -17,11 +16,11 @@
         <csrf disabled="true"/>
     </http>
 
+    <!--authentication-manager-->
     <authentication-manager>
         <authentication-provider ref="beagleFairAuthenticationProvider">
         </authentication-provider>
     </authentication-manager>
 
     <beans:bean id="beagleFairAuthenticationProvider" class="ch.smartlinksa.intern.webservice.config.BeagleFairAuthenticationProvider"/>
-
 </beans:beans>

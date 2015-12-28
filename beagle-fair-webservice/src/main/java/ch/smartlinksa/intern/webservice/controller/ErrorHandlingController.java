@@ -7,8 +7,8 @@ import ch.smartlinksa.intern.interfaces.response.RestApiResponseHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -31,7 +30,6 @@ public class ErrorHandlingController {
     public RestApiResponse<?> handleMethodArgumentNotValidExceptionS(HttpServletRequest request, HttpServletResponse response,
                                                      Object handler, MethodArgumentNotValidException ex) {
         BindingResult result = ex.getBindingResult();
-
         if (isObjectValidateError(result)) {
             ObjectError error = result.getGlobalError();
             return createBeagleFairResponseError(request, error.getDefaultMessage(), null);
@@ -39,23 +37,20 @@ public class ErrorHandlingController {
             FieldError fieldError = result.getFieldErrors().get(0);
             return createBeagleFairResponseError(request, fieldError.getDefaultMessage(), fieldError.getArguments());
         }
-
     }
-
-/*    @ExceptionHandler(IllegalFormatException.class)
-    @ResponseBody
-    public RestApiResponse<?> handleIllegalFormatException(HttpServletRequest request, HttpServletResponse response,
-                                                                     Object handler, IllegalFormatException ex) {
-       return createBeagleFairResponseError(request, "500", ["Internal Error"]);
-
-    }*/
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     @ResponseBody
     public RestApiResponse<?> handleHttpMessageNotReadableException(HttpServletRequest request, HttpServletResponse response,
                                                                     Object handler, HttpMessageNotReadableException exception){
-
         return createBeagleFairResponseError(request, MessageCodeConstant.ERROR_HTTP_MESSAGE_NOT_READLEBLE, null);
+    }
+
+    @ExceptionHandler(BadCredentialsException.class)
+    @ResponseBody
+    public RestApiResponse<?> handleBadCredentialsException(HttpServletRequest request, HttpServletResponse response,
+                                                          Object handler, BadCredentialsException exception){
+        return createBeagleFairResponseError(request, exception.getMessage(), null);
     }
 
     @ExceptionHandler(Exception.class)
@@ -64,7 +59,6 @@ public class ErrorHandlingController {
                                                            Object handler, Exception ex) {
         return createBeagleFairResponseError(request, MessageCodeConstant.ERROR_INTERNAL_SERVER, null);
     }
-
 
     private RestApiResponse<?> createBeagleFairResponseError(HttpServletRequest request, String resultCode, Object[] messageArguments) {
         RestApiResponse<String> RestApiResponse = new RestApiResponse<String>();
@@ -75,8 +69,6 @@ public class ErrorHandlingController {
         responseHeaders.setResultDescription(getMessage(resultCode, messageArguments));
         return RestApiResponse;
     }
-
-
 
     private boolean isObjectValidateError(BindingResult result) {
         return result.getGlobalErrorCount() > 0;
