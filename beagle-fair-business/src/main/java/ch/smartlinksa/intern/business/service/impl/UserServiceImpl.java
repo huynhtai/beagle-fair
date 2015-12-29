@@ -11,6 +11,7 @@ import ch.smartlinksa.intern.interfaces.response.UserResponse;
 import ch.smartlinksa.intern.interfaces.util.DateFormatUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ch.smartlinksa.intern.business.util.EncryptMD5;
 
 @Service
 public class UserServiceImpl implements IUserService{
@@ -48,7 +49,7 @@ public class UserServiceImpl implements IUserService{
         User userEntity = new User();
 
         userEntity.setUserName(userRequest.getUserName());
-        userEntity.setPassword(userRequest.getPassword());
+        userEntity.setPassword(EncryptMD5.convertToMD5(userRequest.getPassword()));
         userEntity.setFirstName(userRequest.getFirstName());
         userEntity.setLastName(userRequest.getLastName());
         userEntity.setBirthday(DateFormatUtil.convertStringToDate(userRequest.getBirthday(), FormatConstant.BIRTHDAY_FORMAT));

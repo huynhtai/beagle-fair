@@ -1,5 +1,6 @@
 package ch.smartlinksa.intern.webservice.config;
 
+import ch.smartlinksa.intern.business.util.EncryptMD5;
 import ch.smartlinksa.intern.dao.entity.User;
 import ch.smartlinksa.intern.dao.repository.UserRepository;
 import ch.smartlinksa.intern.interfaces.constant.MessageCodeConstant;
@@ -22,7 +23,7 @@ public class BeagleFairAuthenticationProvider implements AuthenticationProvider{
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username = authentication.getName();
         String password = authentication.getCredentials().toString();
-        User user = checkUserExist(username, password);
+        User user = getUserByUsernameAndPassword(username, password);
         List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
         grantedAuthorities.add(new SimpleGrantedAuthority("USER_ROLE"));
         Authentication auth = new UsernamePasswordAuthenticationToken(username, password,grantedAuthorities);
@@ -30,8 +31,8 @@ public class BeagleFairAuthenticationProvider implements AuthenticationProvider{
         return auth;
     }
 
-    private User checkUserExist(String userName, String password) {
-        User user = userRepository.findByUserNameAndPassword(userName, password);
+    private User getUserByUsernameAndPassword(String userName, String password) {
+        User user = userRepository.findByUserNameAndPassword(userName, EncryptMD5.convertToMD5(password));
         if (user == null){
             throw new BadCredentialsException(MessageCodeConstant.ERROR_USER_NOT_FOUND);
         }
