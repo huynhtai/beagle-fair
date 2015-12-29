@@ -32,7 +32,15 @@ public class UserController_addUserTest {
         Mockito.when(userRepository.save(Matchers.any(User.class))).thenReturn(prepareUserEntity(userRequest));
         RestApiResponse<UserResponse> response = userServiceImpl.add(userRequest);
         UserResponse userResponse = response.getBody();
+        Assertions.assertThat(userResponse.getId()).isNotNull();
         Assertions.assertThat(userRequest.getAddress()).isEqualToIgnoringCase(userResponse.getAddress());
+        Assertions.assertThat(userRequest.getFirstName()).isEqualToIgnoringCase(userResponse.getFirstName());
+        Assertions.assertThat(userRequest.getLastName()).isEqualToIgnoringCase(userResponse.getLastName());
+        Assertions.assertThat(userRequest.getPhoneNumber()).isEqualToIgnoringCase(userResponse.getPhoneNumber());
+        Assertions.assertThat(userRequest.getUserName()).isEqualToIgnoringCase(userResponse.getUserName());
+        Assertions.assertThat(Gender.valueOfKey(userRequest.getGender())).isEqualTo(Gender.valueOfKey(userResponse.getGender()));
+
+
     }
 
     private User prepareUserEntity(UserRequest userRequest) {
@@ -58,7 +66,7 @@ public class UserController_addUserTest {
         userRequest.setFirstName("Hoa");
         userRequest.setLastName("Phuong");
         userRequest.setBirthday("22/12/1998");
-        userRequest.setGender("1");
+        userRequest.setGender("0");
         userRequest.setAddress("Da Nang");
         userRequest.setPhoneNumber("+763491320380980");
 

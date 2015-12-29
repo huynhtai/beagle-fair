@@ -24,6 +24,8 @@
         <mockito-all.version>1.9.5</mockito-all.version>
         <junit.version>4.11</junit.version>
         <fest-assert.version>1.4</fest-assert.version>
+        <jsp-api.version>2.1</jsp-api.version>
+        <servlet-api.version>2.5</servlet-api.version>
     </properties>
 
     <dependencyManagement>
@@ -65,18 +67,15 @@
                 <version>${beagle-fair-dao.version}</version>
             </dependency>
 
-            <!-- Add interface module-->
             <dependency>
-                <groupId>ch.smartlinksa.intern</groupId>
-                <artifactId>beagle-fair-interface</artifactId>
-                <version>${project.version}</version>
+                <groupId>javax.servlet.jsp</groupId>
+                <artifactId>jsp-api</artifactId>
+                <version>${jsp-api.version}</version>
             </dependency>
-
-            <!-- Add business module-->
             <dependency>
-                <groupId>ch.smartlinksa.intern</groupId>
-                <artifactId>beagle-fair-business</artifactId>
-                <version>${project.version}</version>
+                <groupId>javax.servlet</groupId>
+                <artifactId>servlet-api</artifactId>
+                <version>${servlet-api.version}</version>
             </dependency>
 
             <!-- Test -->
@@ -84,16 +83,19 @@
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-all</artifactId>
                 <version>${mockito-all.version}</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.easytesting</groupId>
                 <artifactId>fest-assert</artifactId>
                 <version>${fest-assert.version}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

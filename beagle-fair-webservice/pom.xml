@@ -24,10 +24,21 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+        </dependency>
+
         <!-- Add business module-->
         <dependency>
             <groupId>ch.smartlinksa.intern</groupId>
             <artifactId>beagle-fair-business</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>

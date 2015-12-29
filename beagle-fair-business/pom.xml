@@ -17,11 +17,8 @@
         </dependency>
         <dependency>
             <groupId>ch.smartlinksa.intern</groupId>
-            <artifactId>beagle-fair-dao</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>ch.smartlinksa.intern</groupId>
             <artifactId>beagle-fair-interface</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
         <!-- Test -->

@@ -12,7 +12,7 @@ public class GenderValidator implements ConstraintValidator<Gender, String> {
     }
 
     public boolean isValid(String inputGender, ConstraintValidatorContext constraintValidatorContext) {
-        ch.smartlinksa.intern.dao.constant.Gender gender = ch.smartlinksa.intern.dao.constant.Gender.valueOf(inputGender);
+        ch.smartlinksa.intern.dao.constant.Gender gender = ch.smartlinksa.intern.dao.constant.Gender.valueOfKey(inputGender);
         if(isEmpty(inputGender)) {
             return true;
         }

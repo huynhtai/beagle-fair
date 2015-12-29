@@ -39,6 +39,7 @@ public class UserRequest {
     @BirthDayValidate
     private String birthday;
 
+    @NotNull(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
     @Gender
     private String gender;
 

@@ -55,8 +55,9 @@ public class ErrorHandlingController {
 
     @ExceptionHandler(Exception.class)
     @ResponseBody
-    public RestApiResponse<?> handleIllegalFormatException(HttpServletRequest request, HttpServletResponse response,
+    public RestApiResponse<?> handleException(HttpServletRequest request, HttpServletResponse response,
                                                            Object handler, Exception ex) {
+        ex.printStackTrace();
         return createBeagleFairResponseError(request, MessageCodeConstant.ERROR_INTERNAL_SERVER, null);
     }
 
