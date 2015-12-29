@@ -43,7 +43,7 @@ public class ErrorHandlingController {
     @ResponseBody
     public RestApiResponse<?> handleHttpMessageNotReadableException(HttpServletRequest request, HttpServletResponse response,
                                                                     Object handler, HttpMessageNotReadableException exception){
-        return createBeagleFairResponseError(request, MessageCodeConstant.ERROR_HTTP_MESSAGE_NOT_READLEBLE, null);
+        return createBeagleFairResponseError(request, MessageCodeConstant.ERROR_HTTP_MESSAGE_NOT_READABLE, null);
     }
 
     @ExceptionHandler(BadCredentialsException.class)

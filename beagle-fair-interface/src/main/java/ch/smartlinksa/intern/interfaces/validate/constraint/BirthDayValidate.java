@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
 @Target({ ElementType.METHOD, ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface BirthDayValidate {
-    String message() default MessageCodeConstant.ERROR_IVALID_BIRTHDAY;
+    String message() default MessageCodeConstant.ERROR_INVALID_FORMAT_BIRTHDAY;
 
     Class<?>[] groups() default {};
 

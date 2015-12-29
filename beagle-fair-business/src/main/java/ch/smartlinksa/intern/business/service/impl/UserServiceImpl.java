@@ -21,26 +21,26 @@ public class UserServiceImpl implements IUserService{
     public RestApiResponse<UserResponse> add(UserRequest userRequest) {
         User userEntity = convertToUserEntity(userRequest);
         userEntity = userRepository.save(userEntity);
-        return sendResponseWhenAddUserSuccessfully(userEntity);
+        return sendResponseWhenAddUserSuccessfully(userEntity, userRequest);
     }
 
-    private  RestApiResponse<UserResponse> sendResponseWhenAddUserSuccessfully(User userEntity){
+    private  RestApiResponse<UserResponse> sendResponseWhenAddUserSuccessfully(User userEntity, UserRequest userRequest){
         RestApiResponse<UserResponse> addUserResponse = new RestApiResponse<UserResponse>();
-        addUserResponse.setBody(convertUserEntityToUserResponse(userEntity));
+        addUserResponse.setBody(convertUserEntityToUserResponse(userEntity, userRequest));
         return addUserResponse;
     }
 
-    private  UserResponse convertUserEntityToUserResponse(User userEntity){
+    private  UserResponse convertUserEntityToUserResponse(User userEntity, UserRequest userRequest){
         UserResponse userResponse = new UserResponse();
 
         userResponse.setId(userEntity.getId());
-        userResponse.setUserName(userEntity.getUserName());
-        userResponse.setPhoneNumber(userEntity.getPhoneNumber());
-        userResponse.setAddress(userEntity.getAddress());
-        userResponse.setBirthday(DateFormatUtil.convertDateToString(userEntity.getBirthday()));
-        userResponse.setFirstName(userEntity.getFirstName());
-        userResponse.setLastName(userEntity.getLastName());
-        userResponse.setGender(userEntity.getGender().toString());
+        userResponse.setUserName(userRequest.getUserName());
+        userResponse.setPhoneNumber(userRequest.getPhoneNumber());
+        userResponse.setAddress(userRequest.getAddress());
+        userResponse.setBirthday(userRequest.getBirthday());
+        userResponse.setFirstName(userRequest.getFirstName());
+        userResponse.setLastName(userRequest.getLastName());
+        userResponse.setGender(userRequest.getGender());
 
         return userResponse;
     }
@@ -53,15 +53,12 @@ public class UserServiceImpl implements IUserService{
         userEntity.setFirstName(userRequest.getFirstName());
         userEntity.setLastName(userRequest.getLastName());
         userEntity.setBirthday(DateFormatUtil.convertStringToDate(userRequest.getBirthday(), FormatConstant.BIRTHDAY_FORMAT));
-        userEntity.setGender(Gender.valueOf(convertGender(userRequest.getGender())));
+        userEntity.setGender(Gender.valueOfKey(userRequest.getGender()));
         userEntity.setPhoneNumber(userRequest.getPhoneNumber());
         userEntity.setAddress(userRequest.getAddress());
 
         return userEntity;
     }
 
-    private  String convertGender(String gender){
-        return "0".equalsIgnoreCase(gender)?"MALE":"FEMALE";
-    }
 }
 

@@ -1,12 +1,15 @@
 package ch.smartlinksa.intern.business.service.impl;
 
+import ch.smartlinksa.intern.business.util.EncryptMD5;
+import ch.smartlinksa.intern.dao.constant.Gender;
 import ch.smartlinksa.intern.dao.entity.User;
 import ch.smartlinksa.intern.dao.repository.UserRepository;
+import ch.smartlinksa.intern.interfaces.constant.FormatConstant;
 import ch.smartlinksa.intern.interfaces.request.UserRequest;
 import ch.smartlinksa.intern.interfaces.response.RestApiResponse;
 import ch.smartlinksa.intern.interfaces.response.UserResponse;
+import ch.smartlinksa.intern.interfaces.util.DateFormatUtil;
 import org.fest.assertions.Assertions;
-import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -24,17 +27,27 @@ public class UserController_addUserTest {
     private UserServiceImpl userServiceImpl;
 
     @Test
-    public void a(){
-//        UserRequest userRequest = prepareUserRequest();
-//        Mockito.when(userRepository.save(Matchers.any(User.class))).thenReturn(prepareUserEntity(userRequest));
-//        RestApiResponse<UserResponse> response = userServiceImpl.add(userRequest);
-//        UserResponse userResponse = response.getBody();
-//        Assertions.assertThat(userRequest.getAddress()).isEqualToIgnoringCase(userResponse.getAddress());
+    public void shouldGetUserResponseLikeUserRequest(){
+        UserRequest userRequest = prepareUserRequest();
+        Mockito.when(userRepository.save(Matchers.any(User.class))).thenReturn(prepareUserEntity(userRequest));
+        RestApiResponse<UserResponse> response = userServiceImpl.add(userRequest);
+        UserResponse userResponse = response.getBody();
+        Assertions.assertThat(userRequest.getAddress()).isEqualToIgnoringCase(userResponse.getAddress());
     }
 
     private User prepareUserEntity(UserRequest userRequest) {
-        User user = new User();
-        return user;
+        User userEntity = new User();
+
+        userEntity.setUserName(userRequest.getUserName());
+        userEntity.setPassword(EncryptMD5.convertToMD5(userRequest.getPassword()));
+        userEntity.setFirstName(userRequest.getFirstName());
+        userEntity.setLastName(userRequest.getLastName());
+        userEntity.setBirthday(DateFormatUtil.convertStringToDate(userRequest.getBirthday(), FormatConstant.BIRTHDAY_FORMAT));
+        userEntity.setGender(Gender.FEMALE);
+        userEntity.setPhoneNumber(userRequest.getPhoneNumber());
+        userEntity.setAddress(userRequest.getAddress());
+
+        return userEntity;
     }
 
     private UserRequest prepareUserRequest(){

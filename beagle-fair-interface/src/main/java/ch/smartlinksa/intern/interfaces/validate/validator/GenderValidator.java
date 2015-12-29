@@ -8,12 +8,17 @@ import java.util.List;
 
 public class GenderValidator implements ConstraintValidator<Gender, String> {
 
-    private static final List<String> GENDER_SUPPORTED = Arrays.asList("0","1");
-
     public void initialize(Gender gender) {
     }
 
     public boolean isValid(String inputGender, ConstraintValidatorContext constraintValidatorContext) {
-        return  !"".equals(inputGender) ? GENDER_SUPPORTED.contains(inputGender) : true;
+        ch.smartlinksa.intern.dao.constant.Gender gender = ch.smartlinksa.intern.dao.constant.Gender.valueOf(inputGender);
+        if(isEmpty(inputGender)) {
+            return true;
+        }
+        return gender != null ;
+    }
+    private boolean isEmpty(String str){
+        return  "".equals(str);
     }
 }

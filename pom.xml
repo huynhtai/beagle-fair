@@ -21,6 +21,9 @@
         <beagle-fair-dao.version>1.0.0-SNAPSHOT</beagle-fair-dao.version>
         <hibernate-validator.version>4.2.0.Final</hibernate-validator.version>
         <jackson-databind.version>2.4.1</jackson-databind.version>
+        <mockito-all.version>1.9.5</mockito-all.version>
+        <junit.version>4.11</junit.version>
+        <fest-assert.version>1.4</fest-assert.version>
     </properties>
 
     <dependencyManagement>
@@ -80,19 +83,18 @@
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-all</artifactId>
-                <version>1.9.5</version>
+                <version>${mockito-all.version}</version>
             </dependency>
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
-                <version>4.11</version>
+                <version>${junit.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.easytesting</groupId>
                 <artifactId>fest-assert</artifactId>
-                <version>1.4</version>
+                <version>${fest-assert.version}</version>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
 
