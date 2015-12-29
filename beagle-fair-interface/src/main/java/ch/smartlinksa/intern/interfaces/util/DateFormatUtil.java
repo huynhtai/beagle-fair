@@ -3,6 +3,7 @@ package ch.smartlinksa.intern.interfaces.util;
 import ch.smartlinksa.intern.interfaces.constant.FormatConstant;
 
 import java.text.DateFormat;
+import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,7 +13,6 @@ public class DateFormatUtil {
     private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat(FormatConstant.BIRTHDAY_FORMAT);
 
     public static boolean isFormatDate(String dateInputString) {
-
         simpleDateFormat.setLenient(false);
         Date date = null;
         try {
@@ -52,8 +52,12 @@ public class DateFormatUtil {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
         return date;
+    }
+
+    public static String convertDateToString(Date date){
+        Format formatter = new SimpleDateFormat(FormatConstant.BIRTHDAY_FORMAT);
+        return formatter.format(date);
     }
 
 

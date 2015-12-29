@@ -37,7 +37,7 @@ public class UserServiceImpl implements IUserService{
         userResponse.setUserName(userEntity.getUserName());
         userResponse.setPhoneNumber(userEntity.getPhoneNumber());
         userResponse.setAddress(userEntity.getAddress());
-        userResponse.setBirthday(userEntity.getBirthday().toString());
+        userResponse.setBirthday(DateFormatUtil.convertDateToString(userEntity.getBirthday()));
         userResponse.setFirstName(userEntity.getFirstName());
         userResponse.setLastName(userEntity.getLastName());
         userResponse.setGender(userEntity.getGender().toString());
