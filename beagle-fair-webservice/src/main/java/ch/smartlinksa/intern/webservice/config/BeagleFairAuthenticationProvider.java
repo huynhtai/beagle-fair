@@ -12,6 +12,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,8 +27,8 @@ public class BeagleFairAuthenticationProvider implements AuthenticationProvider{
         User user = getUserByUsernameAndPassword(username, password);
         List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
         grantedAuthorities.add(new SimpleGrantedAuthority("USER_ROLE"));
-        Authentication auth = new UsernamePasswordAuthenticationToken(username, password,grantedAuthorities);
-
+        Authentication auth = new UsernamePasswordAuthenticationToken(username, password, grantedAuthorities);
+        ((UsernamePasswordAuthenticationToken) auth).setDetails(user);
         return auth;
     }
 
