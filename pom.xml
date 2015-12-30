@@ -279,7 +279,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <!--<plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>2.18</version>
@@ -291,15 +291,15 @@
                             <goal>verify</goal>
                         </goals>
                         <configuration>
-                            &lt;!&ndash;
+                            <!--
                                 Skips integration tests if the value of skip.integration.tests
                                 property is true
-                             &ndash;&gt;
+                             -->
                             <skipTests>${skip.integration.tests}</skipTests>
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>-->
+            </plugin>
         </plugins>
     </build>
 
