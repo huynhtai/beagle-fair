@@ -4,6 +4,7 @@ public class MessageCodeConstant {
 
     private MessageCodeConstant() {}
 
+    public static final String SUCCESS = "0";
     public static final String ERROR_INTERNAL_SERVER = "500";
     public static final String ERROR_HTTP_MESSAGE_NOT_READABLE = "1000";
     public static final String ERROR_FIELD_REQUIRED = "1030";

@@ -24,6 +24,12 @@
             <version>${project.version}</version>
         </dependency>
 
+        <!-- Json -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+
         <!-- Test -->
         <dependency>
             <groupId>org.mockito</groupId>
