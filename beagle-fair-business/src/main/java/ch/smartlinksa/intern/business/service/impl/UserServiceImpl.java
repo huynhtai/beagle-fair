@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ch.smartlinksa.intern.business.util.EncryptMD5;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements IUserService{
 
@@ -21,6 +23,7 @@ public class UserServiceImpl implements IUserService{
     public RestApiResponse<UserResponse> add(UserRequest userRequest) {
         User userEntity = convertToUserEntity(userRequest);
         userEntity = userRepository.save(userEntity);
+        List<User> users = userRepository.findAll();
         return sendResponseWhenAddUserSuccessfully(userEntity, userRequest);
     }
 

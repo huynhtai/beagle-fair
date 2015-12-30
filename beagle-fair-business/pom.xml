@@ -19,6 +19,12 @@
             <groupId>ch.smartlinksa.intern</groupId>
             <artifactId>beagle-fair-interface</artifactId>
             <version>${project.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring-aop</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- Test -->
