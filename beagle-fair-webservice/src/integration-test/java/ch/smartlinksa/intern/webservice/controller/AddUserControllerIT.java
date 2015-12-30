@@ -1,6 +1,7 @@
 package ch.smartlinksa.intern.webservice.controller;
 
 import ch.smartlinksa.intern.business.util.JsonUtil;
+import ch.smartlinksa.intern.business.util.NameGenerator;
 import ch.smartlinksa.intern.interfaces.constant.MessageCodeConstant;
 import ch.smartlinksa.intern.interfaces.request.UserRequest;
 import ch.smartlinksa.intern.webservice.config.IntegrationTestConfiguration;
@@ -34,6 +35,7 @@ public class AddUserControllerIT extends BaseITController {
     public void shouldNotAddUserSuccessfullyWhenInputInvalidPassword() throws Exception {
         HttpHeaders headers = buildHttpHeaders();
         UserRequest request = prepareUserRequest();
+        request.setUserName(NameGenerator.generateName());
         request.setPassword("123232343243242");
         getMockMvc().perform(post("/addUser")
                 .content(JsonUtil.convertObjectToJson(request))

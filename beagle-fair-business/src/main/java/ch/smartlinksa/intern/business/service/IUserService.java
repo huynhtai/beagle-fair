@@ -7,5 +7,6 @@ import ch.smartlinksa.intern.interfaces.response.UserResponse;
 import java.util.List;
 
 public interface IUserService {
+
     RestApiResponse<UserResponse> addUser(UserRequest userRequest);
 }

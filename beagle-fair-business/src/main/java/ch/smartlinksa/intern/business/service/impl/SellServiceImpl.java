@@ -1,6 +1,7 @@
 package ch.smartlinksa.intern.business.service.impl;
 
 import ch.smartlinksa.intern.business.service.ISellService;
+import ch.smartlinksa.intern.business.util.SessionUtil;
 import ch.smartlinksa.intern.dao.entity.SellTransaction;
 import ch.smartlinksa.intern.dao.repository.SellTransactionRepository;
 import ch.smartlinksa.intern.interfaces.constant.SellTransactionConstant;
@@ -32,7 +33,7 @@ public class SellServiceImpl implements ISellService{
     private SellTransaction convertSellRequestToSellTransaction(SellRequest sellRequest){
         SellTransaction sellTransaction = new SellTransaction();
 
-        sellTransaction.setUserId("aa008292-4efb-4ba0-b408-d14078412dbd");
+        sellTransaction.setUserId(SessionUtil.getCurrentUserId());
         sellTransaction.setProductCode(sellRequest.getProductCode());
         sellTransaction.setUnitPrice(sellRequest.getUnitPrice());
         sellTransaction.setQuantity(sellRequest.getQuantity());

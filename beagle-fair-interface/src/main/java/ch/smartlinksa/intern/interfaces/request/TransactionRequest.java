@@ -1,28 +1,26 @@
 package ch.smartlinksa.intern.interfaces.request;
 
+import ch.smartlinksa.intern.interfaces.constant.MessageCodeConstant;
+import ch.smartlinksa.intern.interfaces.constant.PatternConstant;
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.validation.constraints.*;
+
 public class TransactionRequest {
 
-    private String id;
-
+    @NotBlank(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
+    @Pattern(message = MessageCodeConstant.ERROR_PRODUCT_CODE_PATTERN, regexp = PatternConstant.PRODUCT_CODE)
     private String productCode;
 
+    @NotNull(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
+    @Min(value = 1, message = MessageCodeConstant.ERROR_MINIMUM_QUANTITY)
+    @Max(value = 200, message = MessageCodeConstant.ERROR_MAXIMUM_QUANTITY)
     private int quantity;
 
-    private String resultCode;
-
-    private String resultMessage;
-
+    @NotNull(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
     private double unitPrice;
 
     private String userId;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getProductCode() {
         return productCode;
@@ -38,22 +36,6 @@ public class TransactionRequest {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    public String getResultCode() {
-        return resultCode;
-    }
-
-    public void setResultCode(String resultCode) {
-        this.resultCode = resultCode;
-    }
-
-    public String getResultMessage() {
-        return resultMessage;
-    }
-
-    public void setResultMessage(String resultMessage) {
-        this.resultMessage = resultMessage;
     }
 
     public double getUnitPrice() {
