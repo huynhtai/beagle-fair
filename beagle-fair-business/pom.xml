@@ -11,20 +11,17 @@
 
     <artifactId>beagle-fair-business</artifactId>
     <dependencies>
+        <!-- Spring web -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
         </dependency>
+
+        <!-- Beagle Fair interface -->
         <dependency>
             <groupId>ch.smartlinksa.intern</groupId>
             <artifactId>beagle-fair-interface</artifactId>
             <version>${project.version}</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>spring-aop</artifactId>
-                    <groupId>org.springframework</groupId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <!-- Test -->
