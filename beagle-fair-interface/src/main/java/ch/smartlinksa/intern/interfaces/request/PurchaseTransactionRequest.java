@@ -2,7 +2,7 @@ package ch.smartlinksa.intern.interfaces.request;
 
 import javax.persistence.Column;
 
-public class PurchaseRequest extends TransactionRequest {
+public class PurchaseTransactionRequest extends TransactionRequest {
 
     private String address;
 
