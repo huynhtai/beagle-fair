@@ -20,10 +20,9 @@ public class UserServiceImpl implements IUserService{
 
     @Autowired
     private UserRepository userRepository;
-    public RestApiResponse<UserResponse> add(UserRequest userRequest) {
+    public RestApiResponse<UserResponse> addUser(UserRequest userRequest) {
         User userEntity = convertToUserEntity(userRequest);
         userEntity = userRepository.save(userEntity);
-        List<User> users = userRepository.findAll();
         return sendResponseWhenAddUserSuccessfully(userEntity, userRequest);
     }
 

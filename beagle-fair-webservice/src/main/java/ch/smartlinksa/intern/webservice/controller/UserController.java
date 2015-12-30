@@ -17,9 +17,9 @@ public class UserController {
     @Autowired
     IUserService userService;
 
-    @RequestMapping(value = "/adduser", method = RequestMethod.POST)
-    public RestApiResponse add(@RequestBody @Valid UserRequest userRequest){
-        return userService.add(userRequest);
+    @RequestMapping(value = "/addUser", method = RequestMethod.POST)
+    public RestApiResponse addUser(@RequestBody @Valid UserRequest userRequest){
+        return userService.addUser(userRequest);
     }
 
 }

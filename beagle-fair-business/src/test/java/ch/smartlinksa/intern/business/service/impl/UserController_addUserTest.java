@@ -30,7 +30,7 @@ public class UserController_addUserTest {
     public void shouldGetUserResponseLikeUserRequest(){
         UserRequest userRequest = prepareUserRequest();
         Mockito.when(userRepository.save(Matchers.any(User.class))).thenReturn(prepareUserEntity(userRequest));
-        RestApiResponse<UserResponse> response = userServiceImpl.add(userRequest);
+        RestApiResponse<UserResponse> response = userServiceImpl.addUser(userRequest);
         UserResponse userResponse = response.getBody();
         Assertions.assertThat(userResponse.getId()).isNotNull();
         Assertions.assertThat(userRequest.getAddress()).isEqualToIgnoringCase(userResponse.getAddress());
