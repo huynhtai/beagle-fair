@@ -18,6 +18,7 @@ public class MessageCodeConstant {
     public static final String ERROR_PATTERN_USERNAME = "1038";
     public static final String ERROR_USER_NOT_FOUND = "1039";
     public static final String ERROR_GENDER = "1040";
-
+    public static final String ERROR_VALUE_MUST_GREATER_THAN_ZERO ="1050";
+    public static final String ERROR_MUST_BE_INTEGER="1051";
 
 }

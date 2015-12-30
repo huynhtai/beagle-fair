@@ -26,7 +26,7 @@ public class BeagleFairAuthenticationProvider implements AuthenticationProvider{
         String password = authentication.getCredentials().toString();
         User user = getUserByUsernameAndPassword(username, password);
         List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
-        grantedAuthorities.add(new SimpleGrantedAuthority("USER_ROLE"));
+        grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
         Authentication auth = new UsernamePasswordAuthenticationToken(username, password, grantedAuthorities);
         ((UsernamePasswordAuthenticationToken) auth).setDetails(user);
         return auth;

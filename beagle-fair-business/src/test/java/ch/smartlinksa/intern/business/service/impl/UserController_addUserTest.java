@@ -39,8 +39,6 @@ public class UserController_addUserTest {
         Assertions.assertThat(userRequest.getPhoneNumber()).isEqualToIgnoringCase(userResponse.getPhoneNumber());
         Assertions.assertThat(userRequest.getUserName()).isEqualToIgnoringCase(userResponse.getUserName());
         Assertions.assertThat(Gender.valueOfKey(userRequest.getGender())).isEqualTo(Gender.valueOfKey(userResponse.getGender()));
-
-
     }
 
     private User prepareUserEntity(UserRequest userRequest) {
