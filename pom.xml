@@ -30,6 +30,7 @@
         <spring-security.version>4.0.0.RELEASE</spring-security.version>
         <spring-aspects.version>4.2.4.RELEASE</spring-aspects.version>
         <spring-test-dbunit.version>1.2.1</spring-test-dbunit.version>
+        <dbunit.version>2.5.1</dbunit.version>
     </properties>
 
     <dependencyManagement>
@@ -207,6 +208,12 @@
                 <groupId>com.github.springtestdbunit</groupId>
                 <artifactId>spring-test-dbunit</artifactId>
                 <version>${spring-test-dbunit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.dbunit</groupId>
+                <artifactId>dbunit</artifactId>
+                <version>${dbunit.version}</version>
                 <scope>test</scope>
             </dependency>
 
