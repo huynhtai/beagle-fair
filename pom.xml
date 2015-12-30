@@ -16,7 +16,7 @@
     </modules>
 
     <properties>
-        <spring.version>4.2.4.RELEASE</spring.version>
+        <spring.version>4.2.2.RELEASE</spring.version>
         <spring-data.version>1.9.2.RELEASE</spring-data.version>
         <beagle-fair-dao.version>1.0.0-SNAPSHOT</beagle-fair-dao.version>
         <hibernate-validator.version>4.2.0.Final</hibernate-validator.version>

@@ -36,7 +36,8 @@ public class UserRequest {
 
     @NotNull(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
     @NotEmpty(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
-    @BirthDayValidate
+//    @BirthDayValidate
+    @Pattern(message = MessageCodeConstant.ERROR_INVALID_FORMAT_BIRTHDAY, regexp = PatternConstant.BIRTHDAY)
     private String birthday;
 
     @NotNull(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
