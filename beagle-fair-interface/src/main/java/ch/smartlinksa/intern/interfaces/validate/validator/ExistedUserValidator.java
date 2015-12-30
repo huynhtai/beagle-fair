@@ -12,6 +12,7 @@ public class ExistedUserValidator implements ConstraintValidator<ExistedUser, St
 
     @Autowired
     private UserRepository userRepository;
+
     public void initialize(ExistedUser existedUser) {
 
     }

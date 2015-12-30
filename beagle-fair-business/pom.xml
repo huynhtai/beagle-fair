@@ -11,6 +11,10 @@
 
     <artifactId>beagle-fair-business</artifactId>
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+        </dependency>
         <!-- Spring web -->
         <dependency>
             <groupId>org.springframework</groupId>

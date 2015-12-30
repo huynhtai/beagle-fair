@@ -18,6 +18,10 @@ public class MessageCodeConstant {
     public static final String ERROR_PATTERN_USERNAME = "1038";
     public static final String ERROR_USER_NOT_FOUND = "1039";
     public static final String ERROR_GENDER = "1040";
+    public static final String ERROR_MINIMUM_QUANTITY= "1041";
+    public static final String ERROR_MAXIMUM_QUANTITY= "1042";
+    public static final String ERROR_DOUBLE_NUMBER = "1043";
+    public static final String ERROR_PRODUCT_CODE_PATTERN = "1044";
 
 
 }
