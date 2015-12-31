@@ -13,6 +13,7 @@ import java.lang.annotation.Target;
 @Target({ ElementType.METHOD, ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface FutureDate {
+
     String message() default MessageCodeConstant.ERROR_INVALID_BIRTHDAY_FUTURE;
 
     Class<?>[] groups() default {};

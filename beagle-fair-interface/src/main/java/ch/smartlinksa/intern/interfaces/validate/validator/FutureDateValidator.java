@@ -8,6 +8,7 @@ import javax.validation.ConstraintValidatorContext;
 public class FutureDateValidator implements ConstraintValidator<BirthDayValidate, String> {
 
     private DateFormatUtil dateFormatUtil;
+
     public void initialize(BirthDayValidate birthDayValidate) {
 
     }

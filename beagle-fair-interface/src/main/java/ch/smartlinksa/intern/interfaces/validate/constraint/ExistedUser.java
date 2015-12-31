@@ -13,6 +13,7 @@ import java.lang.annotation.Target;
 @Target({ElementType.METHOD, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ExistedUser {
+
     String message() default MessageCodeConstant.ERROR_EXIST_USERNAME;
 
     Class<?>[] groups() default {};

@@ -54,6 +54,7 @@ public class PurchaseServiceImpl implements IPurchaseService {
         purchaseResponse.setUnitPrice(purchaseTransaction.getUnitPrice());
         purchaseResponse.setProductCode(purchaseTransaction.getProductCode());
         purchaseResponse.setResultCode(MessageCodeConstant.SUCCESS);
+        purchaseResponse.setResultMessage("Success");
         return purchaseResponse;
 
     }
@@ -75,6 +76,7 @@ public class PurchaseServiceImpl implements IPurchaseService {
         }
         return isNotEnoughMoney;
     }
+
     private void updateBalanceOfUser(PurchaseTransaction purchaseTransaction, User user){
         double balanceAfterPurchase = user.getBalance() - purchaseTransaction.getTotalPrice();
         user.setBalance(balanceAfterPurchase);
