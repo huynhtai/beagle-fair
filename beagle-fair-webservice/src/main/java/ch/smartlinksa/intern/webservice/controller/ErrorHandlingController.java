@@ -1,6 +1,7 @@
 package ch.smartlinksa.intern.webservice.controller;
 
 
+import ch.smartlinksa.intern.business.exception.UserNotEnoughMoneyToPurchaseException;
 import ch.smartlinksa.intern.interfaces.constant.MessageCodeConstant;
 import ch.smartlinksa.intern.interfaces.response.RestApiResponse;
 import ch.smartlinksa.intern.interfaces.response.RestApiResponseHeaders;
@@ -50,6 +51,13 @@ public class ErrorHandlingController {
     @ResponseBody
     public RestApiResponse<?> handleBadCredentialsException(HttpServletRequest request, HttpServletResponse response,
                                                           Object handler, BadCredentialsException exception){
+        return createBeagleFairResponseError(request, exception.getMessage(), null);
+    }
+
+    @ExceptionHandler(UserNotEnoughMoneyToPurchaseException.class)
+    @ResponseBody
+    public RestApiResponse<?> handleUserNotEnoughMoneyToPurchaseException(HttpServletRequest request, HttpServletResponse response,
+                                                            Object handler, UserNotEnoughMoneyToPurchaseException exception){
         return createBeagleFairResponseError(request, exception.getMessage(), null);
     }
 
