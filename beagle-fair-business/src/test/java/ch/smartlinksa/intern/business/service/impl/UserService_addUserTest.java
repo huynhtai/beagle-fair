@@ -19,7 +19,7 @@ import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
-public class UserController_addUserTest {
+public class UserService_addUserTest {
     @Mock
     private UserRepository userRepository;
 
@@ -39,8 +39,6 @@ public class UserController_addUserTest {
         Assertions.assertThat(userRequest.getPhoneNumber()).isEqualToIgnoringCase(userResponse.getPhoneNumber());
         Assertions.assertThat(userRequest.getUserName()).isEqualToIgnoringCase(userResponse.getUserName());
         Assertions.assertThat(Gender.valueOfKey(userRequest.getGender())).isEqualTo(Gender.valueOfKey(userResponse.getGender()));
-
-
     }
 
     private User prepareUserEntity(UserRequest userRequest) {

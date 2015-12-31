@@ -1,28 +1,27 @@
 package ch.smartlinksa.intern.interfaces.request;
 
+import ch.smartlinksa.intern.interfaces.constant.MessageCodeConstant;
+import ch.smartlinksa.intern.interfaces.constant.PatternConstant;
+import ch.smartlinksa.intern.interfaces.validate.constraint.GreaterThanZero;
+import ch.smartlinksa.intern.interfaces.validate.constraint.IsInteger;
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.validation.constraints.*;
+
 public class TransactionRequest {
 
-    private String id;
-
+    @Pattern(message = MessageCodeConstant.ERROR_PRODUCT_CODE_PATTERN, regexp = PatternConstant.PRODUCT_CODE)
+    @NotBlank(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
     private String productCode;
 
-    private int quantity;
+    @NotNull(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
+    @GreaterThanZero(message = MessageCodeConstant.ERROR_VALUE_MUST_GREATER_THAN_ZERO)
+    @IsInteger(message = MessageCodeConstant.ERROR_MUST_BE_INTEGER)
+    private Number quantity;
 
-    private String resultCode;
-
-    private String resultMessage;
-
+    @NotNull(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
+    @GreaterThanZero(message = MessageCodeConstant.ERROR_VALUE_MUST_GREATER_THAN_ZERO)
     private double unitPrice;
-
-    private String userId;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getProductCode() {
         return productCode;
@@ -33,27 +32,11 @@ public class TransactionRequest {
     }
 
     public int getQuantity() {
-        return quantity;
+        return (Integer)quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Number quantity) {
         this.quantity = quantity;
-    }
-
-    public String getResultCode() {
-        return resultCode;
-    }
-
-    public void setResultCode(String resultCode) {
-        this.resultCode = resultCode;
-    }
-
-    public String getResultMessage() {
-        return resultMessage;
-    }
-
-    public void setResultMessage(String resultMessage) {
-        this.resultMessage = resultMessage;
     }
 
     public double getUnitPrice() {
@@ -64,11 +47,4 @@ public class TransactionRequest {
         this.unitPrice = unitPrice;
     }
 
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
 }

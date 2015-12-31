@@ -3,18 +3,11 @@ package ch.smartlinksa.intern.interfaces.response;
 public class TransactionResponse {
 
     private String id;
-
     private String productCode;
-
-    private int quantity;
-
-    private String resultCode;
-
-    private String resultMessage;
-
     private double unitPrice;
-
-    private String userId;
+    private int quantity;
+    private String resultCode;
+    private String resultMessage;
 
     public String getId() {
         return id;
@@ -30,6 +23,14 @@ public class TransactionResponse {
 
     public void setProductCode(String productCode) {
         this.productCode = productCode;
+    }
+
+    public double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(double unitPrice) {
+        this.unitPrice = unitPrice;
     }
 
     public int getQuantity() {
@@ -54,21 +55,5 @@ public class TransactionResponse {
 
     public void setResultMessage(String resultMessage) {
         this.resultMessage = resultMessage;
-    }
-
-    public double getUnitPrice() {
-        return unitPrice;
-    }
-
-    public void setUnitPrice(double unitPrice) {
-        this.unitPrice = unitPrice;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
     }
 }
