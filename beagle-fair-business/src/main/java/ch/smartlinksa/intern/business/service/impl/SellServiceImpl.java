@@ -17,9 +17,6 @@ public class SellServiceImpl implements ISellService{
     @Autowired
     SellTransactionRepository sellRepository;
 
-    @Autowired
-    IUserService userService;
-
     public RestApiResponse<SellRespone> sellProduct(SellRequest sellRequest){
         SellTransaction sellTransaction = convertSellRequestToSellTransaction(sellRequest);
         sellTransaction = sellRepository.save(sellTransaction);
@@ -36,7 +33,7 @@ public class SellServiceImpl implements ISellService{
     private SellTransaction convertSellRequestToSellTransaction(SellRequest sellRequest){
         SellTransaction sellTransaction = new SellTransaction();
 
-        sellTransaction.setUser(userService.getCurrentUser());
+        sellTransaction.setUser(SessionUtil.getCurrentUser());
         sellTransaction.setProductCode(sellRequest.getProductCode());
         sellTransaction.setUnitPrice(sellRequest.getUnitPrice());
         sellTransaction.setQuantity(sellRequest.getQuantity());

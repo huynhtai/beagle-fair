@@ -8,7 +8,6 @@ import ch.smartlinksa.intern.dao.repository.PurchaseTransactionRepository;
 import ch.smartlinksa.intern.interfaces.request.PurchaseRequest;
 import ch.smartlinksa.intern.interfaces.response.PurchaseResponse;
 import ch.smartlinksa.intern.interfaces.response.RestApiResponse;
-import ch.smartlinksa.intern.interfaces.response.TransactionResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +33,7 @@ public class PurchaseServiceImpl implements IPurchaseService{
         purchaseTransaction.setQuantity(purchaseRequest.getQuantity());
         purchaseTransaction.setUnitPrice(purchaseRequest.getUnitPrice());
         purchaseTransaction.setTotalPrice(calculateTotalPrice(purchaseRequest));
-        purchaseTransaction.setUser(userService.getCurrentUser());
+        purchaseTransaction.setUser(SessionUtil.getCurrentUser());
         return purchaseTransaction;
     }
 

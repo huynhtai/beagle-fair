@@ -22,10 +22,6 @@ public class UserServiceImpl implements IUserService{
     @Autowired
     private UserRepository userRepository;
 
-    public User getCurrentUser(){
-        return  (User) SecurityContextHolder.getContext().getAuthentication().getDetails();
-    }
-
     public RestApiResponse<UserResponse> addUser(UserRequest userRequest) {
         User userEntity = convertToUserEntity(userRequest);
         userEntity = userRepository.save(userEntity);
