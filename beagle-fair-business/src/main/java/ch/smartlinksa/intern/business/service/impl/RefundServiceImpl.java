@@ -1,10 +1,10 @@
 package ch.smartlinksa.intern.business.service.impl;
 
+import ch.smartlinksa.intern.business.constant.TransactionConstant;
 import ch.smartlinksa.intern.business.service.IRefundService;
 import ch.smartlinksa.intern.business.util.SessionUtil;
 import ch.smartlinksa.intern.dao.entity.RefundTransaction;
 import ch.smartlinksa.intern.dao.repository.RefundRepository;
-import ch.smartlinksa.intern.interfaces.constant.RefundTransactionConstant;
 import ch.smartlinksa.intern.interfaces.request.RefundResquest;
 import ch.smartlinksa.intern.interfaces.response.RefundResponse;
 import ch.smartlinksa.intern.interfaces.response.RestApiResponse;
@@ -49,8 +49,9 @@ public class RefundServiceImpl implements IRefundService {
         refundTransactionEntity.setUser(SessionUtil.getCurrentUser());
         refundTransactionEntity.setAddress(refundResquest.getAddress());
         refundTransactionEntity.setReason(refundResquest.getReason());
-        refundTransactionEntity.setResultCode(RefundTransactionConstant.REFUND_TRANSACTION_RESULT_CODE);
-        refundTransactionEntity.setResultMessage(RefundTransactionConstant.REFUND_TRANSACTION_RESULT_MESSAGE);
+        refundTransactionEntity.setResultCode(TransactionConstant.RESULT_CODE);
+        refundTransactionEntity.setResultMessage(TransactionConstant.RESULT_MESSAGE);
+
         return refundTransactionEntity;
     }
 }

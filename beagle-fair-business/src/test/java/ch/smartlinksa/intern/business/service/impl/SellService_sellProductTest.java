@@ -1,10 +1,10 @@
 package ch.smartlinksa.intern.business.service.impl;
 
+import ch.smartlinksa.intern.business.constant.TransactionConstant;
 import ch.smartlinksa.intern.business.util.SessionUtil;
 import ch.smartlinksa.intern.dao.entity.SellTransaction;
 import ch.smartlinksa.intern.dao.entity.User;
 import ch.smartlinksa.intern.dao.repository.SellTransactionRepository;
-import ch.smartlinksa.intern.interfaces.constant.SellTransactionConstant;
 import ch.smartlinksa.intern.interfaces.request.SellRequest;
 import ch.smartlinksa.intern.interfaces.response.RestApiResponse;
 import ch.smartlinksa.intern.interfaces.response.SellRespone;
@@ -48,8 +48,8 @@ public class SellService_sellProductTest {
         Assertions.assertThat(sellRequest.getDescription()).isEqualToIgnoringCase(sellRespone.getDescription());
         Assertions.assertThat(sellRequest.getProductCode()).isEqualToIgnoringCase(sellRespone.getProductCode());
         Assertions.assertThat(sellRequest.getUnitPrice()).isEqualTo(sellRespone.getUnitPrice());
-        Assertions.assertThat(SellTransactionConstant.SELL_TRANSACTION_RESULT_CODE).isEqualTo(sellRespone.getResultCode());
-        Assertions.assertThat(SellTransactionConstant.SELL_TRANSACTION_RESULT_MESSAGE).isEqualTo(sellRespone.getResultMessage());
+        Assertions.assertThat(TransactionConstant.RESULT_CODE).isEqualTo(sellRespone.getResultCode());
+        Assertions.assertThat(TransactionConstant.RESULT_MESSAGE).isEqualTo(sellRespone.getResultMessage());
     }
 
     private SellRequest prepareSellRequest(){
@@ -72,8 +72,8 @@ public class SellService_sellProductTest {
         sellTransaction.setQuantity(sellRequest.getQuantity());
         sellTransaction.setDescription(sellRequest.getDescription());
         sellTransaction.setAddress(sellRequest.getAddress());
-        sellTransaction.setResultCode(SellTransactionConstant.SELL_TRANSACTION_RESULT_CODE);
-        sellTransaction.setResultMessage(SellTransactionConstant.SELL_TRANSACTION_RESULT_MESSAGE);
+        sellTransaction.setResultCode(TransactionConstant.RESULT_CODE);
+        sellTransaction.setResultMessage(TransactionConstant.RESULT_MESSAGE);
 
         return sellTransaction;
     }

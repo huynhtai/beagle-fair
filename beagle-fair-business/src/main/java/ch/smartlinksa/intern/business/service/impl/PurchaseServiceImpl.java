@@ -1,5 +1,6 @@
 package ch.smartlinksa.intern.business.service.impl;
 
+import ch.smartlinksa.intern.business.constant.TransactionConstant;
 import ch.smartlinksa.intern.business.exception.UserNotEnoughMoneyToPurchaseException;
 import ch.smartlinksa.intern.business.service.IPurchaseService;
 import ch.smartlinksa.intern.business.util.SessionUtil;
@@ -7,7 +8,6 @@ import ch.smartlinksa.intern.dao.entity.PurchaseTransaction;
 import ch.smartlinksa.intern.dao.entity.User;
 import ch.smartlinksa.intern.dao.repository.PurchaseTransactionRepository;
 import ch.smartlinksa.intern.dao.repository.UserRepository;
-import ch.smartlinksa.intern.interfaces.constant.MessageCodeConstant;
 import ch.smartlinksa.intern.interfaces.request.PurchaseRequest;
 import ch.smartlinksa.intern.interfaces.response.PurchaseResponse;
 import ch.smartlinksa.intern.interfaces.response.RestApiResponse;
@@ -53,8 +53,8 @@ public class PurchaseServiceImpl implements IPurchaseService {
         purchaseResponse.setQuantity(purchaseTransaction.getQuantity());
         purchaseResponse.setUnitPrice(purchaseTransaction.getUnitPrice());
         purchaseResponse.setProductCode(purchaseTransaction.getProductCode());
-        purchaseResponse.setResultCode(MessageCodeConstant.SUCCESS);
-        purchaseResponse.setResultMessage("Success");
+        purchaseResponse.setResultCode(TransactionConstant.RESULT_CODE);
+        purchaseResponse.setResultMessage(TransactionConstant.RESULT_MESSAGE);
         return purchaseResponse;
 
     }

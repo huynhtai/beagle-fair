@@ -1,10 +1,10 @@
 package ch.smartlinksa.intern.business.service.impl;
 
+import ch.smartlinksa.intern.business.constant.TransactionConstant;
 import ch.smartlinksa.intern.business.service.ISellService;
 import ch.smartlinksa.intern.business.util.SessionUtil;
 import ch.smartlinksa.intern.dao.entity.SellTransaction;
 import ch.smartlinksa.intern.dao.repository.SellTransactionRepository;
-import ch.smartlinksa.intern.interfaces.constant.SellTransactionConstant;
 import ch.smartlinksa.intern.interfaces.request.SellRequest;
 import ch.smartlinksa.intern.interfaces.response.RestApiResponse;
 import ch.smartlinksa.intern.interfaces.response.SellRespone;
@@ -40,8 +40,8 @@ public class SellServiceImpl implements ISellService{
         sellTransaction.setDescription(sellRequest.getDescription());
         sellTransaction.setAddress(sellRequest.getAddress());
 
-        sellTransaction.setResultCode(SellTransactionConstant.SELL_TRANSACTION_RESULT_CODE);
-        sellTransaction.setResultMessage(SellTransactionConstant.SELL_TRANSACTION_RESULT_MESSAGE);
+        sellTransaction.setResultCode(TransactionConstant.RESULT_CODE);
+        sellTransaction.setResultMessage(TransactionConstant.RESULT_MESSAGE);
 
         return sellTransaction;
     }
