@@ -2,7 +2,6 @@ package ch.smartlinksa.intern.interfaces.validate.constraint;
 
 
 import ch.smartlinksa.intern.interfaces.constant.MessageCodeConstant;
-import ch.smartlinksa.intern.interfaces.validate.validator.GreaterThanZerValidator;
 import ch.smartlinksa.intern.interfaces.validate.validator.IsIntegerValidator;
 
 import javax.validation.Constraint;

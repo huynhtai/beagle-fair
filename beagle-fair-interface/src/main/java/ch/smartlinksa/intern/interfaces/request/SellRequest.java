@@ -29,4 +29,5 @@ public class SellRequest extends TransactionRequest{
     public void setAddress(String address) {
         this.address = address;
     }
+
 }

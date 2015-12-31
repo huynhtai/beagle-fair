@@ -55,10 +55,4 @@ public class DateFormatUtil {
         return date;
     }
 
-    public static String convertDateToString(Date date){
-        Format formatter = new SimpleDateFormat(FormatConstant.BIRTHDAY_FORMAT);
-        return formatter.format(date);
-    }
-
-
 }
