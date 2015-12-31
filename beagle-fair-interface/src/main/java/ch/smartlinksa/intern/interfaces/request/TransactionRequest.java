@@ -2,25 +2,26 @@ package ch.smartlinksa.intern.interfaces.request;
 
 import ch.smartlinksa.intern.interfaces.constant.MessageCodeConstant;
 import ch.smartlinksa.intern.interfaces.constant.PatternConstant;
+import ch.smartlinksa.intern.interfaces.validate.constraint.GreaterThanZero;
+import ch.smartlinksa.intern.interfaces.validate.constraint.IsInteger;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.validation.constraints.*;
 
 public class TransactionRequest {
 
-    @NotBlank(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
     @Pattern(message = MessageCodeConstant.ERROR_PRODUCT_CODE_PATTERN, regexp = PatternConstant.PRODUCT_CODE)
+    @NotBlank(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
     private String productCode;
 
     @NotNull(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
-    @Min(value = 1, message = MessageCodeConstant.ERROR_MINIMUM_QUANTITY)
-    @Max(value = 200, message = MessageCodeConstant.ERROR_MAXIMUM_QUANTITY)
-    private int quantity;
+    @GreaterThanZero(message = MessageCodeConstant.ERROR_VALUE_MUST_GREATER_THAN_ZERO)
+    @IsInteger(message = MessageCodeConstant.ERROR_MUST_BE_INTEGER)
+    private Number quantity;
 
     @NotNull(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
+    @GreaterThanZero(message = MessageCodeConstant.ERROR_VALUE_MUST_GREATER_THAN_ZERO)
     private double unitPrice;
-
-    private String userId;
 
     public String getProductCode() {
         return productCode;
@@ -31,10 +32,10 @@ public class TransactionRequest {
     }
 
     public int getQuantity() {
-        return quantity;
+        return (Integer)quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Number quantity) {
         this.quantity = quantity;
     }
 
@@ -46,11 +47,4 @@ public class TransactionRequest {
         this.unitPrice = unitPrice;
     }
 
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
 }

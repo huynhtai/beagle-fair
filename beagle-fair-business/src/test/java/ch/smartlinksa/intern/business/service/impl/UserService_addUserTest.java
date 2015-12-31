@@ -19,7 +19,7 @@ import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
-public class UserController_addUserTest {
+public class UserService_addUserTest {
     @Mock
     private UserRepository userRepository;
 

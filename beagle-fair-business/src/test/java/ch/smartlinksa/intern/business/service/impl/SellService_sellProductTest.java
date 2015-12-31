@@ -1,19 +1,13 @@
 package ch.smartlinksa.intern.business.service.impl;
 
-import ch.smartlinksa.intern.business.util.SessionUtil;
 import ch.smartlinksa.intern.dao.entity.SellTransaction;
 import ch.smartlinksa.intern.dao.repository.SellTransactionRepository;
 import ch.smartlinksa.intern.interfaces.constant.SellTransactionConstant;
 import ch.smartlinksa.intern.interfaces.request.SellRequest;
-import ch.smartlinksa.intern.interfaces.response.RestApiResponse;
-import ch.smartlinksa.intern.interfaces.response.SellRespone;
-import org.fest.assertions.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.mockito.Matchers;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -29,7 +23,7 @@ public class SellService_sellProductTest {
     public void shouldGetSellResponseLikeSellRequest(){
 //        SellRequest sellRequest = prepareSellRequest();
 //        Mockito.when(sellRepository.save(Matchers.any(SellTransaction.class))).thenReturn(prepareSellTransactionEntity(sellRequest));
-//        Mockito.when(SessionUtil.getCurrentUserId()).thenReturn("aa008292-4efb-4ba0-b408-d14078412dbd");
+////        Mockito.when(SessionUtil.getCurrentUserId()).thenReturn("aa008292-4efb-4ba0-b408-d14078412dbd");
 //        RestApiResponse<SellRespone> response = sellService.sellProduct(sellRequest);
 //        SellRespone sellRespone = response.getBody();
 //        Assertions.assertThat(sellRespone.getId()).isNotNull();
@@ -58,7 +52,7 @@ public class SellService_sellProductTest {
         SellTransaction sellTransaction = new SellTransaction();
 
 //        Mockito.when(SessionUtil.getCurrentUserId()).thenReturn("aa008292-4efb-4ba0-b408-d14078412dbd");
-        sellTransaction.setUserId(SessionUtil.getCurrentUserId());
+//        sellTransaction.setUserId("aa008292-4efb-4ba0-b408-d14078412dbd");
         sellTransaction.setProductCode(sellRequest.getProductCode());
         sellTransaction.setUnitPrice(sellRequest.getUnitPrice());
         sellTransaction.setQuantity(sellRequest.getQuantity());

@@ -1,7 +1,7 @@
 package ch.smartlinksa.intern.business.service.impl;
 
 import ch.smartlinksa.intern.business.service.ISellService;
-import ch.smartlinksa.intern.business.util.SessionUtil;
+import ch.smartlinksa.intern.business.service.IUserService;
 import ch.smartlinksa.intern.dao.entity.SellTransaction;
 import ch.smartlinksa.intern.dao.repository.SellTransactionRepository;
 import ch.smartlinksa.intern.interfaces.constant.SellTransactionConstant;
@@ -16,6 +16,9 @@ public class SellServiceImpl implements ISellService{
 
     @Autowired
     SellTransactionRepository sellRepository;
+
+    @Autowired
+    IUserService userService;
 
     public RestApiResponse<SellRespone> sellProduct(SellRequest sellRequest){
         SellTransaction sellTransaction = convertSellRequestToSellTransaction(sellRequest);
@@ -33,7 +36,7 @@ public class SellServiceImpl implements ISellService{
     private SellTransaction convertSellRequestToSellTransaction(SellRequest sellRequest){
         SellTransaction sellTransaction = new SellTransaction();
 
-        sellTransaction.setUserId(SessionUtil.getCurrentUserId());
+        sellTransaction.setUser(userService.getCurrentUser());
         sellTransaction.setProductCode(sellRequest.getProductCode());
         sellTransaction.setUnitPrice(sellRequest.getUnitPrice());
         sellTransaction.setQuantity(sellRequest.getQuantity());
@@ -49,7 +52,6 @@ public class SellServiceImpl implements ISellService{
         SellRespone sellRespone = new SellRespone();
 
         sellRespone.setId(sellTransaction.getId());
-        sellRespone.setUserId(sellTransaction.getUserId());
         sellRespone.setProductCode(sellTransaction.getProductCode());
         sellRespone.setQuantity(sellTransaction.getQuantity());
         sellRespone.setUnitPrice(sellTransaction.getUnitPrice());

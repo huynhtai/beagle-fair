@@ -2,7 +2,6 @@ package ch.smartlinksa.intern.business.service.impl;
 
 import ch.smartlinksa.intern.business.service.IPurchaseService;
 import ch.smartlinksa.intern.business.service.IUserService;
-import ch.smartlinksa.intern.business.util.SessionUtil;
 import ch.smartlinksa.intern.dao.entity.PurchaseTransaction;
 import ch.smartlinksa.intern.dao.repository.PurchaseTransactionRepository;
 import ch.smartlinksa.intern.interfaces.request.PurchaseRequest;
@@ -34,7 +33,7 @@ public class PurchaseServiceImpl implements IPurchaseService{
         purchaseTransaction.setQuantity(purchaseRequest.getQuantity());
         purchaseTransaction.setUnitPrice(purchaseRequest.getUnitPrice());
         purchaseTransaction.setTotalPrice(calculateTotalPrice(purchaseRequest));
-        purchaseTransaction.setUserId(SessionUtil.getCurrentUserId());
+        purchaseTransaction.setUser(userService.getCurrentUser());
         return purchaseTransaction;
     }
 
