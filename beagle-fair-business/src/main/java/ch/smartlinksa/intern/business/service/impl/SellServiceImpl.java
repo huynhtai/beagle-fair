@@ -39,6 +39,7 @@ public class SellServiceImpl implements ISellService{
         sellTransaction.setQuantity(sellRequest.getQuantity());
         sellTransaction.setDescription(sellRequest.getDescription());
         sellTransaction.setAddress(sellRequest.getAddress());
+
         sellTransaction.setResultCode(SellTransactionConstant.SELL_TRANSACTION_RESULT_CODE);
         sellTransaction.setResultMessage(SellTransactionConstant.SELL_TRANSACTION_RESULT_MESSAGE);
 

@@ -6,7 +6,7 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.math.BigDecimal;
 
-public class GreaterThanZerValidator implements ConstraintValidator<GreaterThanZero, Number>{
+public class GreaterThanZeroValidator implements ConstraintValidator<GreaterThanZero, Number>{
 
     public void initialize(GreaterThanZero greaterThanZero) {
     }
