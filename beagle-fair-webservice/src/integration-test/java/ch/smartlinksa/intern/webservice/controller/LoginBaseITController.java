@@ -23,7 +23,7 @@ public class LoginBaseITController extends BaseITController {
     private UserRepository userRepository;
 
     protected MockHttpSession getSession() {
-        Authentication authentication = getAuthentication("tranductrinh", "123456aA");
+        Authentication authentication = getAuthentication("tranductrinh3", "123456aA");
         MockHttpSession session = new MockHttpSession();
         session.setAttribute(SEC_CONTEXT_ATTR, new MockSecurityContext(authentication));
         return session;
