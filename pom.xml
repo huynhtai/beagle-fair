@@ -31,6 +31,7 @@
         <spring-aspects.version>4.2.4.RELEASE</spring-aspects.version>
         <spring-test-dbunit.version>1.2.1</spring-test-dbunit.version>
         <dbunit.version>2.5.1</dbunit.version>
+        <powermock.version>1.6.0</powermock.version>
     </properties>
 
     <dependencyManagement>
@@ -214,6 +215,18 @@
                 <groupId>org.dbunit</groupId>
                 <artifactId>dbunit</artifactId>
                 <version>${dbunit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.powermock</groupId>
+                <artifactId>powermock-api-mockito</artifactId>
+                <version>${powermock.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.powermock</groupId>
+                <artifactId>powermock-module-junit4</artifactId>
+                <version>${powermock.version}</version>
                 <scope>test</scope>
             </dependency>
 

@@ -33,7 +33,7 @@ public class SellServiceImpl implements ISellService{
     private SellTransaction convertSellRequestToSellTransaction(SellRequest sellRequest){
         SellTransaction sellTransaction = new SellTransaction();
 
-        sellTransaction.setUserId(SessionUtil.getCurrentUserId());
+//        sellTransaction.setUserId(SessionUtil.getCurrentUserId());
         sellTransaction.setProductCode(sellRequest.getProductCode());
         sellTransaction.setUnitPrice(sellRequest.getUnitPrice());
         sellTransaction.setQuantity(sellRequest.getQuantity());
@@ -49,7 +49,7 @@ public class SellServiceImpl implements ISellService{
         SellRespone sellRespone = new SellRespone();
 
         sellRespone.setId(sellTransaction.getId());
-        sellRespone.setUserId(sellTransaction.getUserId());
+//        sellRespone.setUserId(sellTransaction.getUserId());
         sellRespone.setProductCode(sellTransaction.getProductCode());
         sellRespone.setQuantity(sellTransaction.getQuantity());
         sellRespone.setUnitPrice(sellTransaction.getUnitPrice());

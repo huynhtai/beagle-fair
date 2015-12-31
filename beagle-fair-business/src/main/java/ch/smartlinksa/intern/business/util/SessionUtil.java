@@ -5,7 +5,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 public class SessionUtil {
     public static String getCurrentUserId(){
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getDetails();
-        return user.getId();
+        return getCurrentUser().getId();
+    }
+    public static User getCurrentUser(){
+        return (User) SecurityContextHolder.getContext().getAuthentication().getDetails();
     }
 }
