@@ -4,7 +4,7 @@ import ch.smartlinksa.intern.interfaces.request.RefundResquest;
 import ch.smartlinksa.intern.interfaces.response.RefundResponse;
 import ch.smartlinksa.intern.interfaces.response.RestApiResponse;
 
-public interface IRefundProductService {
+public interface IRefundService {
 
     RestApiResponse<RefundResponse> addRefundProduct(RefundResquest refundResquest);
 }

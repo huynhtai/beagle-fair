@@ -16,9 +16,6 @@ public class RefundResquest extends  TransactionRequest {
     @Size(message = MessageCodeConstant.ERROR_SIZE, min = 1, max = 100)
     private String reason;
 
-    @NotNull(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
-    private double totalPrice;
-
     public String getAddress() {
         return address;
     }
@@ -33,13 +30,5 @@ public class RefundResquest extends  TransactionRequest {
 
     public void setReason(String reason) {
         this.reason = reason;
-    }
-
-    public double getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
     }
 }
