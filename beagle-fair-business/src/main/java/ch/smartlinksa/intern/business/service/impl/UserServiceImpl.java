@@ -10,11 +10,8 @@ import ch.smartlinksa.intern.interfaces.response.RestApiResponse;
 import ch.smartlinksa.intern.interfaces.response.UserResponse;
 import ch.smartlinksa.intern.interfaces.util.DateFormatUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import ch.smartlinksa.intern.business.util.EncryptMD5;
-
-import java.util.List;
 
 @Service
 public class UserServiceImpl implements IUserService{
@@ -23,7 +20,7 @@ public class UserServiceImpl implements IUserService{
     private UserRepository userRepository;
 
     public RestApiResponse<UserResponse> addUser(UserRequest userRequest) {
-        User userEntity = convertToUserEntity(userRequest);
+        User userEntity = convertUserRequestToUserEntity(userRequest);
         userEntity = userRepository.save(userEntity);
         return sendResponseWhenAddUserSuccessfully(userEntity, userRequest);
     }
@@ -49,7 +46,7 @@ public class UserServiceImpl implements IUserService{
         return userResponse;
     }
 
-    private User convertToUserEntity(UserRequest userRequest){
+    private User convertUserRequestToUserEntity(UserRequest userRequest){
         User userEntity = new User();
 
         userEntity.setUserName(userRequest.getUserName());
