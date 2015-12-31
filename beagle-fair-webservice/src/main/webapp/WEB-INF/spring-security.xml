@@ -8,6 +8,7 @@
 
     <http auto-config="true">
         <intercept-url pattern="/adduser" access="permitAll()"/>
+        <intercept-url pattern="/refundProduct" access="permitAll()"/>
         <intercept-url pattern="/**" access="isAuthenticated()"/>
         <logout
                 invalidate-session="true"

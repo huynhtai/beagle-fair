@@ -13,8 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ch.smartlinksa.intern.business.util.EncryptMD5;
 
-import java.util.List;
-
 @Service
 public class UserServiceImpl implements IUserService{
 
