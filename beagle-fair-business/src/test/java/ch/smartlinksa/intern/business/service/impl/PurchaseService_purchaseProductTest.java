@@ -1,11 +1,7 @@
 package ch.smartlinksa.intern.business.service.impl;
 
-import ch.smartlinksa.intern.business.exception.UserNotEnoughMoneyToPurchaseException;
 import ch.smartlinksa.intern.business.util.SessionUtil;
-import ch.smartlinksa.intern.dao.entity.PurchaseTransaction;
-import ch.smartlinksa.intern.dao.entity.User;
 import ch.smartlinksa.intern.dao.repository.PurchaseTransactionRepository;
-import ch.smartlinksa.intern.dao.repository.UserRepository;
 import ch.smartlinksa.intern.interfaces.constant.MessageCodeConstant;
 import ch.smartlinksa.intern.interfaces.request.PurchaseRequest;
 import ch.smartlinksa.intern.interfaces.response.PurchaseResponse;
@@ -89,20 +85,5 @@ public class PurchaseService_purchaseProductTest {
         purchaseRequest.setAddress("123");
         return purchaseRequest;
     }
-    private PurchaseTransaction preparePurchaseTransactionEntity(PurchaseRequest purchaseRequest) {
-        PurchaseTransaction purchaseTransaction = new PurchaseTransaction();
-        purchaseTransaction.setProductCode(purchaseRequest.getProductCode());
-        purchaseTransaction.setQuantity(purchaseRequest.getQuantity());
-        purchaseTransaction.setUnitPrice(purchaseRequest.getUnitPrice());
-        purchaseTransaction.setTotalPrice(40);
-        purchaseTransaction.setAddress(purchaseRequest.getAddress());
-        return purchaseTransaction;
-    }
 
-    private User prepareUser(){
-        User user = new User();
-        user.setUserName("abc");
-        user.setBalance(100);
-        return user;
-    }
 }
