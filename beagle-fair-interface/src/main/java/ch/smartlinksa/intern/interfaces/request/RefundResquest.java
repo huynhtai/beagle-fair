@@ -9,11 +9,11 @@ import javax.validation.constraints.Size;
 public class RefundResquest extends  TransactionRequest {
 
     @NotBlank(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
-    @Size(message = MessageCodeConstant.ERROR_SIZE, min = 1, max = 100)
+    @Size(message = MessageCodeConstant.ERROR_SIZE, min = 5, max = 100)
     private String address;
 
     @NotBlank(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
-    @Size(message = MessageCodeConstant.ERROR_SIZE, min = 1, max = 100)
+    @Size(message = MessageCodeConstant.ERROR_SIZE, min = 5, max = 100)
     private String reason;
 
     public String getAddress() {
