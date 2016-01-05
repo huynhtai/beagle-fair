@@ -10,6 +10,7 @@ import org.springframework.test.context.support.DirtiesContextTestExecutionListe
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -29,5 +30,6 @@ import java.lang.annotation.Target;
         DbUnitTestExecutionListener.class
 })
 @WebAppConfiguration
+@Transactional
 public @interface IntegrationTestConfiguration {
 }

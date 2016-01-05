@@ -4,7 +4,8 @@ import ch.smartlinksa.intern.business.util.JsonUtil;
 import ch.smartlinksa.intern.interfaces.constant.MessageCodeConstant;
 import ch.smartlinksa.intern.interfaces.request.PurchaseRequest;
 import ch.smartlinksa.intern.webservice.config.IntegrationTestConfiguration;
-import com.github.springtestdbunit.annotation.*;
+import com.github.springtestdbunit.annotation.DatabaseSetup;
+import com.github.springtestdbunit.annotation.DatabaseSetups;
 import org.junit.Test;
 import org.springframework.http.HttpHeaders;
 
@@ -14,7 +15,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @IntegrationTestConfiguration
 @DatabaseSetups({@DatabaseSetup(value = "/data/beagle_fair.xml")})
-@DatabaseTearDowns({@DatabaseTearDown(value = "/data/beagle_fair.xml", type = DatabaseOperation.DELETE_ALL)})
 public class PurchaseProductControllerIT extends LoginBaseITController{
 
     @Test
@@ -106,7 +106,7 @@ public class PurchaseProductControllerIT extends LoginBaseITController{
                 .andReturn();
     }
 
-    /*@Test
+    @Test
     public void shouldPurchaseSuccessfully() throws Exception {
         HttpHeaders headers = buildHttpHeaders();
         PurchaseRequest purchaseRequest = preparePurchaseRequest();
@@ -117,7 +117,7 @@ public class PurchaseProductControllerIT extends LoginBaseITController{
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.headers.resultCode").value(MessageCodeConstant.SUCCESS))
                 .andReturn();
-    }*/
+    }
 
     private PurchaseRequest preparePurchaseRequest(){
         String json = "{ \n"+
