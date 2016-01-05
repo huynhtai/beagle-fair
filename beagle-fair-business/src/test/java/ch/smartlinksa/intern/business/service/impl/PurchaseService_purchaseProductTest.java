@@ -1,7 +1,11 @@
 package ch.smartlinksa.intern.business.service.impl;
 
+import ch.smartlinksa.intern.business.exception.UserNotEnoughMoneyToPurchaseException;
 import ch.smartlinksa.intern.business.util.SessionUtil;
+import ch.smartlinksa.intern.dao.entity.PurchaseTransaction;
+import ch.smartlinksa.intern.dao.entity.User;
 import ch.smartlinksa.intern.dao.repository.PurchaseTransactionRepository;
+import ch.smartlinksa.intern.dao.repository.UserRepository;
 import ch.smartlinksa.intern.interfaces.constant.MessageCodeConstant;
 import ch.smartlinksa.intern.interfaces.request.PurchaseRequest;
 import ch.smartlinksa.intern.interfaces.response.PurchaseResponse;
@@ -54,6 +58,7 @@ public class PurchaseService_purchaseProductTest {
         PowerMockito.when(SessionUtil.getCurrentUser()).thenReturn(prepareUser());
         Mockito.when(purchaseTransactionRepository.save(Matchers.any(PurchaseTransaction.class)))
                 .thenReturn(preparePurchaseTransactionEntity(purchaseRequest));
+        Mockito.when(userRepository.save(Matchers.any(User.class))).thenReturn(new User());
         RestApiResponse<PurchaseResponse> response = purchaseService.addNewPurchase(purchaseRequest);
         PurchaseResponse purchaseResponse = response.getBody();
         Assertions.assertThat(purchaseResponse.getTotalPrice()).isEqualTo(40);
@@ -84,6 +89,22 @@ public class PurchaseService_purchaseProductTest {
         purchaseRequest.setUnitPrice(5);
         purchaseRequest.setAddress("123");
         return purchaseRequest;
+    }
+
+    private PurchaseTransaction preparePurchaseTransactionEntity(PurchaseRequest purchaseRequest){
+        PurchaseTransaction purchaseTransaction = new PurchaseTransaction();
+        purchaseTransaction.setProductCode(purchaseRequest.getProductCode());
+        purchaseTransaction.setUnitPrice(purchaseRequest.getUnitPrice());
+        purchaseTransaction.setQuantity(purchaseRequest.getQuantity());
+        purchaseTransaction.setAddress(purchaseRequest.getAddress());
+        purchaseTransaction.setTotalPrice(40);
+        return purchaseTransaction;
+    }
+
+    private User prepareUser(){
+        User user = new User();
+        user.setBalance(100);
+        return user;
     }
 
 }
