@@ -14,12 +14,9 @@ public class TransactionRequest {
     @NotBlank(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
     private String productCode;
 
-    @NotNull(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
     @GreaterThanZero(message = MessageCodeConstant.ERROR_VALUE_MUST_GREATER_THAN_ZERO)
-    @IsInteger(message = MessageCodeConstant.ERROR_MUST_BE_INTEGER)
-    private Number quantity;
+    private int quantity;
 
-    @NotNull(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
     @GreaterThanZero(message = MessageCodeConstant.ERROR_VALUE_MUST_GREATER_THAN_ZERO)
     private double unitPrice;
 
@@ -32,10 +29,10 @@ public class TransactionRequest {
     }
 
     public int getQuantity() {
-        return (Integer)quantity;
+        return quantity;
     }
 
-    public void setQuantity(Number quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
@@ -43,9 +40,7 @@ public class TransactionRequest {
         return unitPrice;
     }
 
-    public void setUnitPrice(Number unitPrice) {
-        this.unitPrice = unitPrice.doubleValue();
+    public void setUnitPrice(double unitPrice) {
+        this.unitPrice = unitPrice;
     }
-
-
 }

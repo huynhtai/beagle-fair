@@ -163,18 +163,18 @@ public class RefundProductControllerIT extends LoginBaseITController{
                 .andReturn();
     }
 
-//    @Test
-//    public void shouldRefundSuccessfully() throws Exception {
-//        HttpHeaders headers = buildHttpHeaders();
-//        RefundResquest refundResquest = prepareRefundRequest();
-//        getMockMvc().perform(post("/refundProduct")
-//                .session(getSession())
-//                .content(JsonUtil.convertObjectToJson(refundResquest))
-//                .headers(headers))
-//                .andExpect(status().isOk())
-//                .andExpect(jsonPath("$.headers.resultCode").value(MessageCodeConstant.SUCCESS))
-//                .andReturn();
-//    }
+    @Test
+    public void shouldRefundSuccessfully() throws Exception {
+        HttpHeaders headers = buildHttpHeaders();
+        RefundResquest refundResquest = prepareRefundRequest();
+        getMockMvc().perform(post("/refundProduct")
+                .session(getSession())
+                .content(JsonUtil.convertObjectToJson(refundResquest))
+                .headers(headers))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.headers.resultCode").value(MessageCodeConstant.SUCCESS))
+                .andReturn();
+    }
 
     private RefundResquest prepareRefundRequest() {
         String json = "{\n" +
