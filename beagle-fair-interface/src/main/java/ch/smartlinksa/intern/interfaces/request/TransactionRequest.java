@@ -47,4 +47,5 @@ public class TransactionRequest {
         this.unitPrice = unitPrice;
     }
 
+
 }
