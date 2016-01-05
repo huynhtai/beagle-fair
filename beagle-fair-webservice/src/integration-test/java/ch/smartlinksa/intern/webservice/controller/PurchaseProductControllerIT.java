@@ -93,6 +93,20 @@ public class PurchaseProductControllerIT extends LoginBaseITController{
     }
 
     @Test
+    public void shouldNotPurchaseSuccessfullyWhenInputUnitPriceIsZero() throws Exception {
+        HttpHeaders headers = buildHttpHeaders();
+        PurchaseRequest purchaseRequest = preparePurchaseRequest();
+        purchaseRequest.setUnitPrice(0);
+        getMockMvc().perform(post("/purchaseProduct")
+                .session(getSession())
+                .content(JsonUtil.convertObjectToJson(purchaseRequest))
+                .headers(headers))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.headers.resultCode").value(MessageCodeConstant.ERROR_VALUE_MUST_GREATER_THAN_ZERO))
+                .andReturn();
+    }
+
+    @Test
     public void shouldNotPurchaseSuccessfullyWhenNotEnoughBalance() throws Exception {
         HttpHeaders headers = buildHttpHeaders();
         PurchaseRequest purchaseRequest = preparePurchaseRequest();
