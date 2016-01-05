@@ -43,8 +43,9 @@ public class TransactionRequest {
         return unitPrice;
     }
 
-    public void setUnitPrice(double unitPrice) {
-        this.unitPrice = unitPrice;
+    public void setUnitPrice(Number unitPrice) {
+        this.unitPrice = unitPrice.doubleValue();
     }
+
 
 }

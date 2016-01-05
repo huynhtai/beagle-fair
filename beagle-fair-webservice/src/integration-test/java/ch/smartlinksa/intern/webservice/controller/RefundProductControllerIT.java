@@ -20,7 +20,7 @@ public class RefundProductControllerIT extends LoginBaseITController{
     @Test
     public void shouldNotAddRefundProductSuccessfullWhenInputEmptyProductCode() throws Exception{
             HttpHeaders headers = buildHttpHeaders();
-            RefundResquest refundResquest = prepareUserRequest();
+            RefundResquest refundResquest = prepareRefundRequest();
             refundResquest.setProductCode(null);
             getMockMvc().perform(post("/refundProduct")
                     .session(getSession())
@@ -34,7 +34,7 @@ public class RefundProductControllerIT extends LoginBaseITController{
     @Test
     public void shouldNotAddRefundProductSuccessfullWhenInputErrorProductCodePattern() throws Exception{
         HttpHeaders headers = buildHttpHeaders();
-        RefundResquest refundResquest = prepareUserRequest();
+        RefundResquest refundResquest = prepareRefundRequest();
         refundResquest.setProductCode("aQ1222");
         getMockMvc().perform(post("/refundProduct")
                 .session(getSession())
@@ -48,7 +48,7 @@ public class RefundProductControllerIT extends LoginBaseITController{
     @Test
     public void shouldNotAddRefundProductSuccessfullyWhenInputEmptyAddress() throws Exception {
         HttpHeaders headers = buildHttpHeaders();
-        RefundResquest refundResquest = prepareUserRequest();
+        RefundResquest refundResquest = prepareRefundRequest();
         refundResquest.setAddress(null);
         getMockMvc().perform(post("/refundProduct")
                 .session(getSession())
@@ -62,7 +62,7 @@ public class RefundProductControllerIT extends LoginBaseITController{
     @Test
     public void shouldNotAddRefundProductSuccessfullyWhenInputSizeAddressLessThan5() throws Exception {
         HttpHeaders headers = buildHttpHeaders();
-        RefundResquest refundResquest = prepareUserRequest();
+        RefundResquest refundResquest = prepareRefundRequest();
         refundResquest.setAddress("Quan");
         getMockMvc().perform(post("/refundProduct")
                 .session(getSession())
@@ -76,10 +76,11 @@ public class RefundProductControllerIT extends LoginBaseITController{
     @Test
     public void shouldNotAddRefundProductSuccessfullyWhenInputSizeAddressMoreThan100() throws Exception {
         HttpHeaders headers = buildHttpHeaders();
-        RefundResquest refundResquest = prepareUserRequest();
+        RefundResquest refundResquest = prepareRefundRequest();
         refundResquest.setAddress("QuangNamAaQuangNamAaQuangNamAa" +
-                "QuangNamAaQuangNamAaQuangNamAa" +
-                "QuangNamAaQuangNamAaQuangNamAaQuangNamAaA");
+                                "QuangNamAaQuangNamAaQuangNamAa" +
+                                "QuangNamAaQuangNamAaQuangNamAa" +
+                                "QuangNamAaQuangNamAaQuangNamAa");
         getMockMvc().perform(post("/refundProduct")
                 .session(getSession())
                 .content(JsonUtil.convertObjectToJson(refundResquest))
@@ -92,7 +93,7 @@ public class RefundProductControllerIT extends LoginBaseITController{
     @Test
     public void shouldNotAddRefundProductSuccessfullWhenInputEmptyReason() throws Exception{
         HttpHeaders headers = buildHttpHeaders();
-        RefundResquest refundResquest = prepareUserRequest();
+        RefundResquest refundResquest = prepareRefundRequest();
         refundResquest.setReason(null);
         getMockMvc().perform(post("/refundProduct")
                 .session(getSession())
@@ -106,7 +107,7 @@ public class RefundProductControllerIT extends LoginBaseITController{
     @Test
     public void shouldNotAddRefundProductSuccessfullWhenInputSizeReasonLessThan5() throws Exception{
         HttpHeaders headers = buildHttpHeaders();
-        RefundResquest refundResquest = prepareUserRequest();
+        RefundResquest refundResquest = prepareRefundRequest();
         refundResquest.setReason("Huhh");
         getMockMvc().perform(post("/refundProduct")
                 .session(getSession())
@@ -120,10 +121,11 @@ public class RefundProductControllerIT extends LoginBaseITController{
     @Test
     public void shouldNotAddRefundProductSuccessfullWhenInputSizeReasonMoreThan100() throws Exception{
         HttpHeaders headers = buildHttpHeaders();
-        RefundResquest refundResquest = prepareUserRequest();
+        RefundResquest refundResquest = prepareRefundRequest();
         refundResquest.setReason("LoiKyThuatLoiKyThuatLoiKyThuat" +
-                "LoiKyThuatLoiKyThuatLoiKyThuat" +
-                "LoiKyThuatLoiKyThuatLoiKyThuatLoiKyThuatT");
+                                "LoiKyThuatLoiKyThuatLoiKyThuat" +
+                                "LoiKyThuatLoiKyThuatLoiKyThuat" +
+                                "LoiKyThuatLoiKyThuatLoiKyThuat");
         getMockMvc().perform(post("/refundProduct")
                 .session(getSession())
                 .content(JsonUtil.convertObjectToJson(refundResquest))
@@ -136,7 +138,7 @@ public class RefundProductControllerIT extends LoginBaseITController{
     @Test
     public void shouldNotAddRefundProductSuccessfullWhenInputQuantitysZero() throws Exception{
         HttpHeaders headers = buildHttpHeaders();
-        RefundResquest refundResquest = prepareUserRequest();
+        RefundResquest refundResquest = prepareRefundRequest();
         refundResquest.setQuantity(0);
         getMockMvc().perform(post("/refundProduct")
                 .session(getSession())
@@ -150,7 +152,7 @@ public class RefundProductControllerIT extends LoginBaseITController{
     @Test
     public void shouldNotAddRefundProductSuccessfullWhenInputUnitPriceIsZero() throws Exception{
         HttpHeaders headers = buildHttpHeaders();
-        RefundResquest refundResquest = prepareUserRequest();
+        RefundResquest refundResquest = prepareRefundRequest();
         refundResquest.setUnitPrice(0);
         getMockMvc().perform(post("/refundProduct")
                 .session(getSession())
@@ -161,7 +163,20 @@ public class RefundProductControllerIT extends LoginBaseITController{
                 .andReturn();
     }
 
-    private RefundResquest prepareUserRequest() {
+//    @Test
+//    public void shouldRefundSuccessfully() throws Exception {
+//        HttpHeaders headers = buildHttpHeaders();
+//        RefundResquest refundResquest = prepareRefundRequest();
+//        getMockMvc().perform(post("/refundProduct")
+//                .session(getSession())
+//                .content(JsonUtil.convertObjectToJson(refundResquest))
+//                .headers(headers))
+//                .andExpect(status().isOk())
+//                .andExpect(jsonPath("$.headers.resultCode").value(MessageCodeConstant.SUCCESS))
+//                .andReturn();
+//    }
+
+    private RefundResquest prepareRefundRequest() {
         String json = "{\n" +
                 "  \"productCode\": \"12AQ1234Aa78\",\n" +
                 "  \"address\": \"Quang Nam\",\n" +
