@@ -60,7 +60,7 @@ public class RefundProductControllerIT extends LoginBaseITController{
     }
 
     @Test
-    public void shouldNotAddRefundProductSuccessfullyWhenInputSizeAddressLessThan5() throws Exception {
+    public void shouldNotAddRefundProductSuccessfullyWhenInputSizeAddressLessThanMinLenght() throws Exception {
         HttpHeaders headers = buildHttpHeaders();
         RefundResquest refundResquest = prepareRefundRequest();
         refundResquest.setAddress("Quan");
@@ -74,7 +74,7 @@ public class RefundProductControllerIT extends LoginBaseITController{
     }
 
     @Test
-    public void shouldNotAddRefundProductSuccessfullyWhenInputSizeAddressMoreThan100() throws Exception {
+    public void shouldNotAddRefundProductSuccessfullyWhenInputSizeAddressMoreThanMaxLength() throws Exception {
         HttpHeaders headers = buildHttpHeaders();
         RefundResquest refundResquest = prepareRefundRequest();
         refundResquest.setAddress("QuangNamAaQuangNamAaQuangNamAa" +
@@ -105,7 +105,7 @@ public class RefundProductControllerIT extends LoginBaseITController{
     }
 
     @Test
-    public void shouldNotAddRefundProductSuccessfullWhenInputSizeReasonLessThan5() throws Exception{
+    public void shouldNotAddRefundProductSuccessfullWhenInputSizeReasonLessThanMinLength() throws Exception{
         HttpHeaders headers = buildHttpHeaders();
         RefundResquest refundResquest = prepareRefundRequest();
         refundResquest.setReason("Huhh");
@@ -119,7 +119,7 @@ public class RefundProductControllerIT extends LoginBaseITController{
     }
 
     @Test
-    public void shouldNotAddRefundProductSuccessfullWhenInputSizeReasonMoreThan100() throws Exception{
+    public void shouldNotAddRefundProductSuccessfullWhenInputSizeReasonMoreThanMaxLength() throws Exception{
         HttpHeaders headers = buildHttpHeaders();
         RefundResquest refundResquest = prepareRefundRequest();
         refundResquest.setReason("LoiKyThuatLoiKyThuatLoiKyThuat" +
@@ -180,7 +180,7 @@ public class RefundProductControllerIT extends LoginBaseITController{
         String json = "{\n" +
                 "  \"productCode\": \"12AQ1234Aa78\",\n" +
                 "  \"address\": \"Quang Nam\",\n" +
-                "  \"reason\": \"Hu hong\",\n" +
+                "  \"reason\": \"Loi ky thuat\",\n" +
                 "  \"quantity\": \"120\",\n" +
                 "  \"unitPrice\": \"90\"\n" +
                 "}";
