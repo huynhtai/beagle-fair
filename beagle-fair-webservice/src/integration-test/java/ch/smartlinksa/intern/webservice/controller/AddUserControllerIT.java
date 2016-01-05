@@ -5,7 +5,8 @@ import ch.smartlinksa.intern.business.util.NameGenerator;
 import ch.smartlinksa.intern.interfaces.constant.MessageCodeConstant;
 import ch.smartlinksa.intern.interfaces.request.UserRequest;
 import ch.smartlinksa.intern.webservice.config.IntegrationTestConfiguration;
-import com.github.springtestdbunit.annotation.*;
+import com.github.springtestdbunit.annotation.DatabaseSetup;
+import com.github.springtestdbunit.annotation.DatabaseSetups;
 import org.junit.Test;
 import org.springframework.http.HttpHeaders;
 
@@ -15,7 +16,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @IntegrationTestConfiguration
 @DatabaseSetups(value = {@DatabaseSetup(value = "/data/beagle_fair.xml")})
-@DatabaseTearDowns(value = {@DatabaseTearDown(value = "/data/beagle_fair.xml", type = DatabaseOperation.DELETE_ALL)})
 public class AddUserControllerIT extends BaseITController {
 
     @Test
