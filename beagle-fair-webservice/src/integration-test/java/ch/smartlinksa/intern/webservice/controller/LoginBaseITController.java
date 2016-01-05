@@ -49,12 +49,12 @@ public class LoginBaseITController extends BaseITController {
             this.authentication = authentication;
         }
 
-        @Override
+
         public Authentication getAuthentication() {
             return this.authentication;
         }
 
-        @Override
+
         public void setAuthentication(Authentication authentication) {
             this.authentication = authentication;
         }
