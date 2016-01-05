@@ -25,12 +25,11 @@ public class PurchaseServiceImpl implements IPurchaseService {
 
     public RestApiResponse<PurchaseResponse> addNewPurchase(PurchaseRequest purchaseRequest) {
         PurchaseTransaction purchaseTransaction = convertPurchaseRequestToPurchaseEntity(purchaseRequest);
-        User user = SessionUtil.getCurrentUser();
-        if(isNotEnoughMoneyToPurchase(purchaseTransaction, user)){
+        if(isNotEnoughMoneyToPurchase(purchaseTransaction)){
             throw new UserNotEnoughMoneyToPurchaseException();
         }
         purchaseTransactionRepository.save(purchaseTransaction);
-        updateBalanceOfUser(purchaseTransaction, user);
+        updateBalanceOfUser(purchaseTransaction);
         return makePurchaseTransactionResponse(convertPurchaseEntityToPurchaseTransactionResponse(purchaseTransaction));
     }
 
@@ -69,15 +68,17 @@ public class PurchaseServiceImpl implements IPurchaseService {
         return purchaseRequest.getQuantity() * purchaseRequest.getUnitPrice();
     }
 
-    private boolean isNotEnoughMoneyToPurchase(PurchaseTransaction purchaseTransaction, User user){
+    private boolean isNotEnoughMoneyToPurchase(PurchaseTransaction purchaseTransaction){
         boolean isNotEnoughMoney = false;
+        User user = purchaseTransaction.getUser();
         if(purchaseTransaction.getTotalPrice() > user.getBalance()){
             isNotEnoughMoney = true;
         }
         return isNotEnoughMoney;
     }
 
-    private void updateBalanceOfUser(PurchaseTransaction purchaseTransaction, User user){
+    private void updateBalanceOfUser(PurchaseTransaction purchaseTransaction){
+        User user = purchaseTransaction.getUser();
         double balanceAfterPurchase = user.getBalance() - purchaseTransaction.getTotalPrice();
         user.setBalance(balanceAfterPurchase);
         userRepository.save(user);
