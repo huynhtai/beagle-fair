@@ -23,18 +23,19 @@ public class LoginBaseITController extends BaseITController {
     private UserRepository userRepository;
 
     protected MockHttpSession getSession() {
-        Authentication authentication = getAuthentication("tranductrinh3", "123456aA");
+        UsernamePasswordAuthenticationToken authentication = getAuthentication("tranductrinh", "123456aA");
         MockHttpSession session = new MockHttpSession();
         session.setAttribute(SEC_CONTEXT_ATTR, new MockSecurityContext(authentication));
         return session;
     }
 
-    private Authentication getAuthentication(String username, String password) {
+    private UsernamePasswordAuthenticationToken getAuthentication(String username, String password) {
         User user = userRepository.findByUserNameAndPassword(username, EncryptMD5.convertToMD5(password));
 
         List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
         grantedAuthorities.add(new SimpleGrantedAuthority("USER_ROLE"));
-        Authentication auth = new UsernamePasswordAuthenticationToken(username, password, grantedAuthorities);
+        UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(username, password, grantedAuthorities);
+        ((UsernamePasswordAuthenticationToken) auth).setDetails(user);
 
         return auth;
     }
