@@ -41,7 +41,7 @@ public class RefundProductControllerIT extends LoginBaseITController{
                 .content(JsonUtil.convertObjectToJson(refundResquest))
                 .headers(headers))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.headers.resultCode").value(MessageCodeConstant.ERROR_PRODUCT_CODE_PATTERN))
+                .andExpect(jsonPath("$.headers.resultCode").value(MessageCodeConstant.ERROR_PATTERN_PRODUCT_CODE))
                 .andReturn();
     }
 
