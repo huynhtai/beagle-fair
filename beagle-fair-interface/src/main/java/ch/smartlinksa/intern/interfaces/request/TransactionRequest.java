@@ -10,15 +10,13 @@ import javax.validation.constraints.*;
 
 public class TransactionRequest {
 
-    @Pattern(message = MessageCodeConstant.ERROR_PRODUCT_CODE_PATTERN, regexp = PatternConstant.PRODUCT_CODE)
+    @Pattern(message = MessageCodeConstant.ERROR_PATTERN_PRODUCT_CODE, regexp = PatternConstant.PRODUCT_CODE)
     @NotBlank(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
     private String productCode;
 
-    @NotNull(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
     @GreaterThanZero(message = MessageCodeConstant.ERROR_VALUE_MUST_GREATER_THAN_ZERO)
     private int quantity;
 
-    @NotNull(message = MessageCodeConstant.ERROR_FIELD_REQUIRED)
     @GreaterThanZero(message = MessageCodeConstant.ERROR_VALUE_MUST_GREATER_THAN_ZERO)
     private double unitPrice;
 
